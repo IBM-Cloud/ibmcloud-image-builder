@@ -1,12 +1,12 @@
 ---
   - name: play Hello World
-    hosts: localhost
+    hosts: default
     become: true
 
     tasks:
       - name: task Hello World
         shell:
-          'echo "Hello World!"'
+          'echo "Hello World!\n$(lsb_release -a)"'
         register:
           hello_world
 
