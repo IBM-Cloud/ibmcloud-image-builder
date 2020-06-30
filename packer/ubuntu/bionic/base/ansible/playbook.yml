@@ -1,0 +1,13 @@
+---
+  - name: play Hello World
+    hosts: default
+    become: true
+
+    tasks:
+      - name: task Hello World
+        shell:
+          'echo "Hello World!\n$(lsb_release -a)"'
+        register:
+          hello_world
+
+      - debug: msg="{{ hello_world.stdout }}"

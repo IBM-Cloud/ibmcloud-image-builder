@@ -1,0 +1,47 @@
+{
+  "variables": {
+      "image_url": "https://cloud-images.ubuntu.com/bionic/current/bionic-server-cloudimg-amd64.img",
+      "image_checksum_url": "https://cloud-images.ubuntu.com/bionic/current/SHA256SUMS",
+      "image_name": "ubuntu-bionic",
+      "ssh_private_key_file": "{{env `PACKER_PRIVATE_KEY`}}"
+  },
+  "builders": [
+    {
+      "type": "qemu",
+      "iso_url": "{{user `image_url`}}",
+      "iso_checksum": "file:{{user `image_checksum_url`}}",
+      "shutdown_command": "rm -f /home/ubuntu/.ssh/authorized_keys && sudo rm -f /root/.ssh/authorized_keys && echo 'packer' | sudo -S shutdown -P now",
+      "output_directory": "output-qemu",
+      "disk_size": "5120M",
+      "format": "qcow2",
+      "http_directory": "http",
+      "communicator": "ssh",
+      "ssh_username": "ubuntu",
+      "ssh_private_key_file": "{{user `ssh_private_key_file`}}",
+      "ssh_timeout": "20m",
+      "ssh_port": 22,
+      "ssh_clear_authorized_keys": true,
+      "disk_image": true,
+      "disk_interface": "virtio",
+      "use_default_display": true,
+      "vm_name": "{{user `image_name`}}.qcow2",
+      "qemuargs": [
+          ["-fda", "disk-ssh-pub.img"]]
+    }
+],
+"provisioners": [
+    {
+      "type": "shell",
+      "execute_command": "chmod +x {{.Path}}; sudo {{.Path}}",
+      "scripts": [
+         "shell/install.sh",
+         "shell/cleanup.sh"
+      ]
+    },
+    {
+      "type": "ansible",
+      "user": "ubuntu",
+      "playbook_file": "ansible/playbook.yml"
+    }
+]
+}
