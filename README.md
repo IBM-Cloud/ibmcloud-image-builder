@@ -1,5 +1,6 @@
 # ibmcloud-image-builder
 
+[![Build Status](https://travis-ci.org/IBM-Cloud/ibmcloud-image-builder.svg?branch=master)](https://travis-ci.org/IBM-Cloud/ibmcloud-image-builder)
 
 This repo is for the project that build various virtual machine images in `qcow2` format that can be imported into IBMCLOUD Cloud Object Storage (COS) and be served as custom images.
 
