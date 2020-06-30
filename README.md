@@ -1,13 +1,13 @@
 # ibmcloud-image-builder
 
 
-This repo is for the open source project that build various virtual machine images in `qcow2` format that can be imported IBMCLOUD Cloud Object Storage (COS) and be served as custom images.
+This repo is for the project that build various virtual machine images in `qcow2` format that can be imported into IBMCLOUD Cloud Object Storage (COS) and be served as custom images.
 
-The required tools are also open source projects such as:
-* QEMU
+The required tools are from open source projects such as:
+* [QEMU](https://www.qemu.org)
 * Hashicorp [Packer](https://github.com/hashicorp/packer)
 
-The base images that will be built upon open source projects:
+The base images that will be built upon:
 * [Ubuntu](https://cloud-images.ubuntu.com)
 * [CentOS](https://cloud.centos.org/centos/7/images/)
 * TBD
