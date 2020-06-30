@@ -1,0 +1,13 @@
+---
+  - name: play Hello World
+    hosts: localhost
+    become: true
+
+    tasks:
+      - name: task Hello World
+        shell:
+          'echo "Hello World!"'
+        register:
+          hello_world
+
+      - debug: msg="{{ hello_world.stdout }}"
