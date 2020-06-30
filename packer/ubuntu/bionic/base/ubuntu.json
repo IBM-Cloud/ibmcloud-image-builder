@@ -40,8 +40,8 @@
     },
     {
       "type": "ansible",
-      "playbook_file": "ansible/playbook.yml",
-      "user": "ubuntu"
+      "user": "ubuntu",
+      "playbook_file": "ansible/playbook.yml"
     }
 ]
 }
