@@ -28,8 +28,11 @@ cloud-localds disk-ssh-pub.img user-data
 # ansible-galaxy install
 ansible-galaxy install geerlingguy.docker
 
-# build the image
+# build the images
+# base
 PACKER_LOG=1 packer build ubuntu.json
+# base+docker
+PACKER_LOG=1 packer build ubuntu-docker.json
 
 # prepare to upload
 
