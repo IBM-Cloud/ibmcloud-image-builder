@@ -5,4 +5,4 @@ service:
   - docker
 
 scripts:
-  - docker run hello-world
+  - docker build . -f Dockerfile -t ibmcloud-image-builder
