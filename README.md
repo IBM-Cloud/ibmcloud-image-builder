@@ -25,6 +25,14 @@ The development environment will be provided as a `Dockerfile` based on Ubuntu, 
 * ansible 2.9.9
 
 
+# How To
+
+```
+$ git clone git@github.com:IBM-Cloud/ibmcloud-image-builder.git
+$ cd ibmcloud-image-builder
+$ make
+```
+
 # Acknowledgement
 Thanks to the colleagues and IBM for sponsoring this open source project.
 
