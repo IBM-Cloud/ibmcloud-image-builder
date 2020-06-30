@@ -34,7 +34,7 @@ $ make
 ```
 
 # Acknowledgement
-Thanks to the colleagues and IBM for sponsoring this open source project.
+Thanks to the colleagues and IBM for sponsoring this project.
 
 * Albert Camacho
 * Chad Huesgen
