@@ -26,21 +26,35 @@ EOF
 cloud-localds disk-ssh-pub.img user-data
 
 # build the image
-PACKER_LOG=0 packer build ubuntu.json
+PACKER_LOG=1 packer build ubuntu.json
 
 # prepare to upload
 
+NEW_IMAGE="output-qemu/ibmcloud-ubuntu-bionic-cloudimg-amd64-100G.qcow2"
+ENCRYPTED_IMAGE="output-qemu/ibmcloud-ubuntu-bionic-cloudimg-amd64-100G-encrypted.qcow2"
+
 qemu-img resize output-qemu/ubuntu-bionic.qcow2 100G
-qemu-img convert -f qcow2 -O qcow2 output-qemu/ubuntu-bionic.qcow2 output-qemu/ibmcloud-ubuntu-bionic-cloudimg-amd64-100G.qcow2
+qemu-img convert -f qcow2 -O qcow2 output-qemu/ubuntu-bionic.qcow2 ${NEW_IMAGE}
 rm output-qemu/ubuntu-bionic.qcow2
 
 # create an example encrypted image
+if [ -n "$1" ]; then
+  SECRET="$1"
+else
+  SECRET="JustMySimpleSecret"
+fi
+BASE64_ENCODED_SECRET=$(echo -n $SECRET | base64)
 
 qemu-img convert -O qcow2 \
   --object secret,id=sec0,format=base64,data=${BASE64_ENCODED_SECRET} \
   -o encrypt.format=luks,encrypt.key-secret=sec0 \
-  output-qemu/ibmcloud-ubuntu-bionic-cloudimg-amd64-100G.qcow2 \
-  output-qemu/ibmcloud-ubuntu-bionic-cloudimg-amd64-100G-encrypted.qcow2
+  ${NEW_IMAGE} ${ENCRYPTED_IMAGE}
+
+qemu-img compare \
+  --object secret,id=sec0,format=base64,data=${BASE64_ENCODED_SECRET} \
+  --image-opts \
+  driver=qcow2,file.filename=${NEW_IMAGE} \
+  driver=qcow2,encrypt.key-secret=sec0,file.filename=${ENCRYPTED_IMAGE}
 
 # upload to COS
 
