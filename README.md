@@ -41,3 +41,5 @@ Thanks to the colleagues and IBM for sponsoring this project.
 * Dan Wiggins
 * Zack Grossbart
 * Irene Yip
+* IBM CloudLab
+* IBM
