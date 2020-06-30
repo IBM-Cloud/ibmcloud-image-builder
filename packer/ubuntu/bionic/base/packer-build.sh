@@ -43,15 +43,16 @@ qemu-img info ${NEW_IMAGE}
 rm output-qemu/ubuntu-bionic.qcow2
 
 # base+docker
-PACKER_LOG=1 packer build ubuntu-docker.json
-
-NEW_IMAGE="output-qemu/ibmcloud-ubuntu-bionic-cloudimg-docker-amd64-100G.qcow2"
-ENCRYPTED_IMAGE="output-qemu/ibmcloud-ubuntu-bionic-cloudimg-docker-amd64-100G-encrypted.qcow2"
-
-qemu-img resize output-qemu/ubuntu-bionic.qcow2 100G
-qemu-img convert -f qcow2 -O qcow2 output-qemu/ubuntu-bionic.qcow2 ${NEW_IMAGE}
-qemu-img info ${NEW_IMAGE}
-rm output-qemu/ubuntu-bionic.qcow2
+# debug later
+#PACKER_LOG=1 packer build ubuntu-docker.json
+#
+#NEW_IMAGE="output-qemu/ibmcloud-ubuntu-bionic-cloudimg-docker-amd64-100G.qcow2"
+#ENCRYPTED_IMAGE="output-qemu/ibmcloud-ubuntu-bionic-cloudimg-docker-amd64-100G-encrypted.qcow2"
+#
+#qemu-img resize output-qemu/ubuntu-bionic.qcow2 100G
+#qemu-img convert -f qcow2 -O qcow2 output-qemu/ubuntu-bionic.qcow2 ${NEW_IMAGE}
+#qemu-img info ${NEW_IMAGE}
+#rm output-qemu/ubuntu-bionic.qcow2
 
 # create an example encrypted image
 if [ -n "$1" ]; then
