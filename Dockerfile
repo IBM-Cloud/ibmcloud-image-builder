@@ -1,5 +1,5 @@
 FROM ubuntu:20.04
-LABEL "maintainer"="seungyeop.yang@ibm.com"
+LABEL "maintainer"="SeungYeop Yang"
 ARG WDIR=/ibmcloud-image-builder
 ENV HOME /root
 
