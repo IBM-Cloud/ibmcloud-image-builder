@@ -1,0 +1,8 @@
+---
+# Temporary travis ci file to see travis build
+lauguage: minimal
+service:
+  - docker
+
+scripts:
+  - docker build . -f Dockerfile -t ibmcloud-image-builder
