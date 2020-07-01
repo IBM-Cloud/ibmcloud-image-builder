@@ -34,8 +34,7 @@
       "type": "shell",
       "execute_command": "chmod +x {{.Path}}; sudo {{.Path}}",
       "scripts": [
-         "shell/install.sh",
-         "shell/cleanup.sh"
+         "shell/user-data.sh"
       ]
     },
     {
