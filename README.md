@@ -53,6 +53,7 @@ $ make
 ```
 
 Note: If a new packer template needs to be created, then please repeat yourself.
+It seems that adding more than base image template is not very meaningful. Probably it'll be a good idea to limit the extra image templates that is beyond absolutely necessary. 
 
 ```
 ubuntu@ubuntu-jenkins:~/test/github/ibmcloud-image-builder/packer$ tree -L 5
