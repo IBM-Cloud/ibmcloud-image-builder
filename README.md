@@ -33,6 +33,53 @@ $ cd ibmcloud-image-builder
 $ make
 ```
 
+Note: If a new packer template needs to be created, then please repeat yourself.
+
+ubuntu@ubuntu-jenkins:~/test/github/ibmcloud-image-builder/packer$ tree -L 5
+.
+├── centos
+│   └── 7
+│       └── base
+│           ├── ansible
+│           │   └── playbook.yml
+│           ├── centos.json
+│           ├── http
+│           ├── packer-build.sh
+│           ├── packer-delete.sh
+│           └── shell
+│               └── user-data.sh
+└── ubuntu
+    ├── bionic
+    │   ├── base
+    │   │   ├── ansible
+    │   │   │   └── playbook.yml
+    │   │   ├── http
+    │   │   ├── packer-build.sh
+    │   │   ├── packer-delete.sh
+    │   │   ├── shell
+    │   │   │   └── user-data.sh
+    │   │   └── ubuntu.json
+    │   └── docker
+    │       ├── ansible
+    │       │   └── playbook.yml
+    │       ├── http
+    │       ├── packer-build.sh
+    │       ├── packer-delete.sh
+    │       ├── shell
+    │       │   └── user-data.sh
+    │       └── ubuntu.json
+    ├── focal
+    └── xenial
+
+18 directories, 15 files
+ubuntu@ubuntu-jenkins:~/test/github/ibmcloud-image-builder/packer$
+copy the existing folder and rename the directory
+change either shell/user-data.sh or ansible/playbook.yml
+change the image name in packer-builder.sh ... hmm, this needs to be refactored at the next PR.
+Do not change any other files under the directory except ansible directory; In ansible directory you can add more sophisticated ansible practices. Still, please don't rename playbook.yml.
+Maybe I will consider cookiecutter template later.
+
+
 # Acknowledgement
 Thanks to the colleagues and IBM for sponsoring this project.
 
