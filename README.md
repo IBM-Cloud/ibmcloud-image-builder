@@ -24,6 +24,25 @@ The development environment will be provided as a `Dockerfile` based on Ubuntu 2
 * python3 3.6.9 (pyenv, pipenv)
 * ansible 2.9.9
 
+# Availalble images
+
+* Ubuntu 18.04 Base
+* Ubuntu 18.04 Base + Docker Installed
+
+* CentOS 7 Base
+
+```
+.
+├── centos
+│   └── 7
+│       └── base
+└── ubuntu
+    ├── bionic
+    │   ├── base
+    │   └── docker
+    ├── focal
+    └── xenial
+```
 
 # How To
 
