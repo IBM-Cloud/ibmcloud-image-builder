@@ -26,9 +26,10 @@ The development environment will be provided as a `Dockerfile` based on Ubuntu 2
 
 # Availalble images
 
+So far we have Ubuntu 18.04 and CentOS 7 images as below:
+
 * Ubuntu 18.04 Base
 * Ubuntu 18.04 Base + Docker Installed
-
 * CentOS 7 Base
 
 ```
