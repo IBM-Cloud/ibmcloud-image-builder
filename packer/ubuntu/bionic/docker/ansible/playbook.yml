@@ -10,7 +10,7 @@
         register:
           hello_world
 
-      - debug: msg="{{ hello_world.stdout }}
+      - debug: msg="{{ hello_world.stdout }}"
 
   - name: play Install Geerlingguy Docker
     hosts: default

@@ -1,0 +1,13 @@
+---
+  - name: play Hello World
+    hosts: default
+    become: true
+
+    tasks:
+      - name: task Hello World
+        shell:
+          'echo "Hello World!\n$(cat /etc/centos-release)"'
+        register:
+          hello_world
+
+      - debug: msg="{{ hello_world.stdout }}"

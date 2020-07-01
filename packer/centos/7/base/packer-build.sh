@@ -31,16 +31,16 @@ ansible-galaxy install geerlingguy.docker
 # build the images
 # base
 
-PACKER_LOG=0 packer build ubuntu.json
+PACKER_LOG=0 packer build centos.json
 
 # Time to make the below as a function at the next PR
-NEW_IMAGE="output-qemu/ibmcloud-ubuntu-bionic-cloudimg-amd64-100G.qcow2"
-ENCRYPTED_IMAGE="output-qemu/ibmcloud-ubuntu-bionic-cloudimg-amd64-100G-encrypted.qcow2"
+NEW_IMAGE="output-qemu/ibmcloud-centos-7-cloudimg-amd64-100G.qcow2"
+ENCRYPTED_IMAGE="output-qemu/ibmcloud-centos-7-cloudimg-amd64-100G-encrypted.qcow2"
 
-qemu-img resize output-qemu/ubuntu-bionic.qcow2 100G
-qemu-img convert -f qcow2 -O qcow2 output-qemu/ubuntu-bionic.qcow2 ${NEW_IMAGE}
+qemu-img resize output-qemu/centos-7.qcow2 100G
+qemu-img convert -f qcow2 -O qcow2 output-qemu/centos-7.qcow2 ${NEW_IMAGE}
 qemu-img info ${NEW_IMAGE}
-rm output-qemu/ubuntu-bionic.qcow2
+rm output-qemu/centos-7.qcow2
 
 # create an example encrypted image
 if [ -n "$1" ]; then

@@ -1,8 +1,8 @@
 {
   "variables": {
-      "image_url": "https://cloud-images.ubuntu.com/bionic/current/bionic-server-cloudimg-amd64.img",
-      "image_checksum_url": "https://cloud-images.ubuntu.com/bionic/current/SHA256SUMS",
-      "image_name": "ubuntu-bionic",
+      "image_url": "https://cloud.centos.org/centos/7/images/CentOS-7-x86_64-GenericCloud-2003.qcow2",
+      "image_checksum_url": "https://cloud.centos.org/centos/7/images/sha256sum.txt",
+      "image_name": "centos-7",
       "ssh_private_key_file": "{{env `PACKER_PRIVATE_KEY`}}"
   },
   "builders": [
@@ -10,15 +10,15 @@
       "type": "qemu",
       "iso_url": "{{user `image_url`}}",
       "iso_checksum": "file:{{user `image_checksum_url`}}",
-      "shutdown_command": "rm -f /home/ubuntu/.ssh/authorized_keys && sudo rm -f /root/.ssh/authorized_keys && echo 'packer' | sudo -S shutdown -P now",
+      "shutdown_command": "rm -f /home/centos/.ssh/authorized_keys && sudo rm -f /root/.ssh/authorized_keys && echo 'packer' | sudo -S shutdown -P now",
       "output_directory": "output-qemu",
-      "disk_size": "5120M",
+      "disk_size": "100G",
       "format": "qcow2",
       "http_directory": "http",
       "communicator": "ssh",
-      "ssh_username": "ubuntu",
+      "ssh_username": "centos",
       "ssh_private_key_file": "{{user `ssh_private_key_file`}}",
-      "ssh_timeout": "20m",
+      "ssh_timeout": "60m",
       "ssh_port": 22,
       "ssh_clear_authorized_keys": true,
       "disk_image": true,
@@ -28,20 +28,19 @@
       "qemuargs": [
           ["-fda", "disk-ssh-pub.img"]]
     }
-],
-"provisioners": [
+  ],
+  "provisioners": [
     {
       "type": "shell",
       "execute_command": "chmod +x {{.Path}}; sudo {{.Path}}",
       "scripts": [
-         "shell/install.sh",
-         "shell/cleanup.sh"
+         "shell/user-data.sh"
       ]
     },
     {
       "type": "ansible",
-      "user": "ubuntu",
-      "playbook_file": "ansible/playbook-docker.yml"
+      "user": "centos",
+      "playbook_file": "ansible/playbook.yml"
     }
-]
+  ]
 }
