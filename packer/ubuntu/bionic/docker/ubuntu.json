@@ -41,7 +41,7 @@
     {
       "type": "ansible",
       "user": "ubuntu",
-      "playbook_file": "ansible/playbook-docker.yml"
+      "playbook_file": "ansible/playbook.yml"
     }
 ]
 }

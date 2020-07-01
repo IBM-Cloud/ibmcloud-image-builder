@@ -28,14 +28,11 @@ cloud-localds disk-ssh-pub.img user-data
 # ansible-galaxy install
 ansible-galaxy install geerlingguy.docker
 
-# build the images
-# base
-
+# base+docker
 PACKER_LOG=0 packer build ubuntu.json
 
-# Time to make the below as a function at the next PR
-NEW_IMAGE="output-qemu/ibmcloud-ubuntu-bionic-cloudimg-amd64-100G.qcow2"
-ENCRYPTED_IMAGE="output-qemu/ibmcloud-ubuntu-bionic-cloudimg-amd64-100G-encrypted.qcow2"
+NEW_IMAGE="output-qemu/ibmcloud-ubuntu-bionic-cloudimg-docker-amd64-100G.qcow2"
+ENCRYPTED_IMAGE="output-qemu/ibmcloud-ubuntu-bionic-cloudimg-docker-amd64-100G-encrypted.qcow2"
 
 qemu-img resize output-qemu/ubuntu-bionic.qcow2 100G
 qemu-img convert -f qcow2 -O qcow2 output-qemu/ubuntu-bionic.qcow2 ${NEW_IMAGE}
@@ -68,3 +65,10 @@ qemu-img compare \
 # import as custom images
 
   #TBD
+
+# delete the images and cleanup
+rm -rf output-qemu
+rm -rf packer_cache
+rm -rf ./ssh
+rm -f user-data
+rm -f disk-ssh-pub.img
