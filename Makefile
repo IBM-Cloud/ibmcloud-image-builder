@@ -7,9 +7,14 @@ REMOTE_BRANCH ?= master
 default: all
 
 all: build run-tests cleanup
+alpine_all: alpine_build run-tests cleanup
+
+alpine_build:
+	- echo '{"experimental": true}' | sudo tee /etc/docker/daemon.json; sudo service docker restart; docker version
+	- docker build --squash . -f Dockerfile -t $(IMAGE_NAME):$(IMAGE_VERSION_LATEST)
 
 build:
-	docker build . -f Dockerfile -t $(IMAGE_NAME):$(IMAGE_VERSION_LATEST)
+	docker build --squash . -f Dockerfile -t $(IMAGE_NAME):$(IMAGE_VERSION_LATEST)
 
 run-tests:
 	docker run --privileged -v `pwd`:/ibmcloud-image-builder ${IMAGE_NAME}:${IMAGE_VERSION_LATEST} /bin/bash -c "cd packer/ubuntu/bionic/base  ; ./packer-build.sh"
