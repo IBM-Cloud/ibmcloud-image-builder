@@ -27,7 +27,7 @@ The base images that will be built upon:
 
 This repo will also provide how to encrypt the images with Linux Unified Key Setup `luks` based encryption so that those encrypted images can be imported and used to spin up Virtual Server Instances (VSI) from IBM Virtual Private Cloud Generation 2.
 
-## The CI environment will be provided as a `Dockerfile` based on Alpine latest, and the CI environment will include:
+### The CI environment will be provided as a `Dockerfile` based on Alpine latest, and the CI environment will include:
 * [qemu](https://www.qemu.org)
 * [packer](https://github.com/hashicorp/packer)
 * cloud-utils
@@ -36,7 +36,7 @@ This repo will also provide how to encrypt the images with Linux Unified Key Set
 The building time of this Docker image is < 1 min, I guess it can be used as an alternative while preparing docker pull from docker hub.
 
 
-## The development environment will be provided as a `Dockerfile.ubuntu` based on Ubuntu 20.04 (IBMCLOUD CLI Client has few Linux distros that can be installed), and the development environment will include:
+### The development environment will be provided as a `Dockerfile.ubuntu` based on Ubuntu 20.04, and the development environment will include:
 * [qemu](https://www.qemu.org)
 * [packer](https://github.com/hashicorp/packer)
 * [ibmcloud cli client](https://github.com/IBM-Cloud/ibm-cloud-cli-release) & plugins
