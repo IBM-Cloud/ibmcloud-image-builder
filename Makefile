@@ -7,11 +7,15 @@ REMOTE_BRANCH ?= master
 default: all
 
 all: build run-tests cleanup
-alpine_all: alpine_build run-tests cleanup
+alpine-all: alpine-build run-tests cleanup
+travis-all: docker-pull run-tests cleanup
 
+docker-pull: 
+	docker pull docker.pkg.github.com/ibm-cloud/ibmcloud-image-builder/ibmcloud-image-builder:latest
+	
 alpine_build:
-	- echo '{"experimental": true}' | sudo tee /etc/docker/daemon.json; sudo service docker restart; docker version
-	- docker build --squash . -f Dockerfile -t $(IMAGE_NAME):$(IMAGE_VERSION_LATEST)
+	echo '{"experimental": true}' | sudo tee /etc/docker/daemon.json; sudo service docker restart; docker version
+	docker build --squash . -f Dockerfile -t $(IMAGE_NAME):$(IMAGE_VERSION_LATEST)
 
 build:
 	docker build --squash . -f Dockerfile -t $(IMAGE_NAME):$(IMAGE_VERSION_LATEST)
