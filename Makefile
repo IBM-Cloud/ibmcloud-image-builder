@@ -10,9 +10,9 @@ all: build run-tests cleanup
 alpine-all: alpine-build run-tests cleanup
 travis-all: docker-pull run-tests cleanup
 
-docker-pull: 
+docker-pull:
 	docker pull docker.pkg.github.com/ibm-cloud/ibmcloud-image-builder/ibmcloud-image-builder:latest
-	
+
 alpine-build:
 	echo '{"experimental": true}' | sudo tee /etc/docker/daemon.json; sudo service docker restart; docker version
 	docker build --squash . -f Dockerfile -t $(IMAGE_NAME):$(IMAGE_VERSION_LATEST)
@@ -27,11 +27,13 @@ run-tests:
 	docker run --privileged -v `pwd`:/ibmcloud-image-builder ${IMAGE_NAME}:${IMAGE_VERSION_LATEST} /bin/bash -c "cd packer/ubuntu/bionic/base  ; ./packer-build.sh"
 	docker run --privileged -v `pwd`:/ibmcloud-image-builder ${IMAGE_NAME}:${IMAGE_VERSION_LATEST} /bin/bash -c "cd packer/ubuntu/bionic/docker; ./packer-build.sh"
 	docker run --privileged -v `pwd`:/ibmcloud-image-builder ${IMAGE_NAME}:${IMAGE_VERSION_LATEST} /bin/bash -c "cd packer/centos/7/base       ; ./packer-build.sh"
+	docker run --privileged -v `pwd`:/ibmcloud-image-builder ${IMAGE_NAME}:${IMAGE_VERSION_LATEST} /bin/bash -c "cd packer/centos/7/docker     ; ./packer-build.sh"
 
 cleanup:
 	docker run --privileged -v `pwd`:/ibmcloud-image-builder ${IMAGE_NAME}:${IMAGE_VERSION_LATEST} /bin/bash -c "cd packer/ubuntu/bionic/base  ; ./packer-delete.sh"
 	docker run --privileged -v `pwd`:/ibmcloud-image-builder ${IMAGE_NAME}:${IMAGE_VERSION_LATEST} /bin/bash -c "cd packer/ubuntu/bionic/docker; ./packer-delete.sh"
 	docker run --privileged -v `pwd`:/ibmcloud-image-builder ${IMAGE_NAME}:${IMAGE_VERSION_LATEST} /bin/bash -c "cd packer/centos/7/base       ; ./packer-delete.sh"
+	docker run --privileged -v `pwd`:/ibmcloud-image-builder ${IMAGE_NAME}:${IMAGE_VERSION_LATEST} /bin/bash -c "cd packer/centos/7/docker     ; ./packer-delete.sh"
 
 ubuntu-bionic-base:
 	docker run --privileged -v `pwd`:/ibmcloud-image-builder ${IMAGE_NAME}:${IMAGE_VERSION_LATEST} /bin/bash -c "cd packer/ubuntu/bionic/base  ; ./packer-build.sh"
@@ -44,5 +46,9 @@ ubuntu-bionic-docker:
 centos-7-base:
 	docker run --privileged -v `pwd`:/ibmcloud-image-builder ${IMAGE_NAME}:${IMAGE_VERSION_LATEST} /bin/bash -c "cd packer/centos/7/base       ; ./packer-build.sh"
 	docker run --privileged -v `pwd`:/ibmcloud-image-builder ${IMAGE_NAME}:${IMAGE_VERSION_LATEST} /bin/bash -c "cd packer/centos/7/base       ; ./packer-delete.sh"
+
+centos-7-docker:
+	docker run --privileged -v `pwd`:/ibmcloud-image-builder ${IMAGE_NAME}:${IMAGE_VERSION_LATEST} /bin/bash -c "cd packer/centos/7/docker     ; ./packer-build.sh"
+	docker run --privileged -v `pwd`:/ibmcloud-image-builder ${IMAGE_NAME}:${IMAGE_VERSION_LATEST} /bin/bash -c "cd packer/centos/7/docker     ; ./packer-delete.sh
 
 .PHONY: all
