@@ -32,6 +32,7 @@ The CI environment will be provided as a `Dockerfile` based on Alpine latest, an
 * [packer](https://github.com/hashicorp/packer)
 * cloud-utils
 * ansible
+
 The building time of this Docker image is < 1 min, I guess it can be used as an alternative while preparing docker pull from docker hub.
 
 
@@ -44,6 +45,7 @@ The development environment will be provided as a `Dockerfile.ubuntu` based on U
 * go 1.13
 * python3 3.6.9 (pyenv, pipenv)
 * ansible 2.9.9
+
 The building time of this Docker image is about 7 mins from my machines, it takes long. While preparing a repository in docker hub, maybe worthy to try once. It won't be changed very often any more.
 
 # Availalble images
