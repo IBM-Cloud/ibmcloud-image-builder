@@ -30,18 +30,23 @@ So far we have Ubuntu 18.04 and CentOS 7 images as below:
 * Ubuntu 18.04 Base
 * Ubuntu 18.04 Base + Docker Installed
 * CentOS 7 Base
+* CentOS 7 Base + Docker Installed
 
 ```
+$ tree -L 3
 .
 ├── centos
 │   └── 7
-│       └── base
+│       ├── base
+│       └── docker
 └── ubuntu
     ├── bionic
     │   ├── base
     │   └── docker
     ├── focal
     └── xenial
+
+10 directories, 0 files
 ```
 
 # How To
@@ -53,14 +58,29 @@ $ make
 ```
 
 Note: If a new packer template needs to be created, then please repeat yourself.
-It seems that adding more than base image template is not very meaningful. Probably it'll be a good idea to limit the extra image templates that is beyond absolutely necessary. 
+The extra `docker` templates in addtion to `base` templates are for the information purpose on how to add new templates.
+
+1. copy the existing folder and rename the directory
+2. change either shell/user-data.sh or ansible/playbook.yml
+3. change the image name in packer-builder.sh ... hmm, this needs to be refactored later.
+
+* Do not change any other files under the directory except ansible directory; In ansible directory you can add more sophisticated ansible practices. Still, please don't rename `playbook.yml`.
 
 ```
-ubuntu@ubuntu-jenkins:~/test/github/ibmcloud-image-builder/packer$ tree -L 5
+$ tree -L 5
 .
 ├── centos
 │   └── 7
-│       └── base
+│       ├── base
+│       │   ├── ansible
+│       │   │   └── playbook.yml
+│       │   ├── centos.json
+│       │   ├── http
+│       │   ├── packer-build.sh
+│       │   ├── packer-delete.sh
+│       │   └── shell
+│       │       └── user-data.sh
+│       └── docker
 │           ├── ansible
 │           │   └── playbook.yml
 │           ├── centos.json
@@ -92,14 +112,8 @@ ubuntu@ubuntu-jenkins:~/test/github/ibmcloud-image-builder/packer$ tree -L 5
     ├── focal
     └── xenial
 
-18 directories, 15 files
-ubuntu@ubuntu-jenkins:~/test/github/ibmcloud-image-builder/packer$
+22 directories, 20 files
 ```
-1. copy the existing folder and rename the directory
-2. change either shell/user-data.sh or ansible/playbook.yml
-3. change the image name in packer-builder.sh ... hmm, this needs to be refactored at the next PR.
-
-* Do not change any other files under the directory except ansible directory; In ansible directory you can add more sophisticated ansible practices. Still, please don't rename playbook.yml.
 
 
 
