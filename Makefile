@@ -13,11 +13,11 @@ travis-all: docker-pull run-tests cleanup
 docker-pull: 
 	docker pull docker.pkg.github.com/ibm-cloud/ibmcloud-image-builder/ibmcloud-image-builder:latest
 	
-alpine_build:
+alpine-build:
 	echo '{"experimental": true}' | sudo tee /etc/docker/daemon.json; sudo service docker restart; docker version
 	docker build --squash . -f Dockerfile -t $(IMAGE_NAME):$(IMAGE_VERSION_LATEST)
 
-ubuntu_build:
+ubuntu-build:
 	docker build --squash . -f Dockerfile.ubuntu -t $(IMAGE_NAME):$(IMAGE_VERSION_LATEST)
 
 build:
