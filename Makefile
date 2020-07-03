@@ -9,7 +9,7 @@ default: all
 all: build run-tests cleanup
 
 build:
-	docker build . -f Dockerfile -t $(IMAGE_NAME):$(IMAGE_VERSION_LATEST)
+	docker build --squash . -f Dockerfile -t $(IMAGE_NAME):$(IMAGE_VERSION_LATEST)
 
 run-tests:
 	docker run --privileged -v `pwd`:/ibmcloud-image-builder ${IMAGE_NAME}:${IMAGE_VERSION_LATEST} /bin/bash -c "cd packer/ubuntu/bionic/base  ; ./packer-build.sh"

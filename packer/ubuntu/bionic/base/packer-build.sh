@@ -13,7 +13,7 @@ else
   export PACKER_PRIVATE_KEY=./ssh/id_rsa
 fi
 
-sudo rm -rf output-qemu
+rm -rf output-qemu
 
 # prepare public key image
 public_key=$(cat ${PACKER_PUBLIC_KEY})
