@@ -5,6 +5,6 @@ service:
   - docker
 
 scripts:
-  travis-all
+  make travis-all
   #- make alpine-all
   #- docker build . -f Dockerfile -t ibmcloud-image-builder
