@@ -9,6 +9,10 @@ default: all
 all: build run-tests cleanup
 
 build:
+  echo $'{\n    "experimental": true\n}' | sudo tee /etc/docker/daemon.json;
+	docker build --squash . -f Dockerfile -t $(IMAGE_NAME):$(IMAGE_VERSION_LATEST)
+
+mac_build:
 	docker build --squash . -f Dockerfile -t $(IMAGE_NAME):$(IMAGE_VERSION_LATEST)
 
 run-tests:
