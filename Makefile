@@ -9,7 +9,7 @@ default: all
 all: build run-tests cleanup
 
 build:
-	- echo $'{\n    "experimental": true\n}' | sudo tee /etc/docker/daemon.json; sudo systemctl restart docker
+	- echo $'{\n    "experimental": true\n}' | sudo tee /etc/docker/daemon.json; service docker restart; docker version
 	- docker build --squash . -f Dockerfile -t $(IMAGE_NAME):$(IMAGE_VERSION_LATEST)
 
 mac_build:
