@@ -5,11 +5,11 @@
 # Release Read
 
 * v0.1.0 (packer template for Ubuntu 18.04, CentOS 7)
-- [ ] templates for base and docker per each OS
-- [ ] build locally
-- [ ] CI build
-- [ ] github releases is ready
-- [ ] github packages is ready
+- [x] templates for base and docker per each OS
+- [x] build locally
+- [x] CI build
+- [x] github releases is ready
+- [x] github packages is ready
 - [ ] DockerHub image repository is ready
 
 # Introduction
