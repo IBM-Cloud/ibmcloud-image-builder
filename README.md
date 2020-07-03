@@ -2,6 +2,18 @@
 
 ![Docker](https://github.com/IBM-Cloud/ibmcloud-image-builder/workflows/Docker/badge.svg)[![Build Status](https://travis-ci.org/IBM-Cloud/ibmcloud-image-builder.svg?branch=master)](https://travis-ci.org/IBM-Cloud/ibmcloud-image-builder)
 
+# Release Read
+
+* v0.1.0 (packer template for Ubuntu 18.04, CentOS 7)
+- [ ] templates for base and docker per each OS
+- [ ] build locally
+- [ ] CI build
+- [ ] github releases is ready
+- [ ] github packages is ready
+- [ ] DockerHub image repository is ready
+
+# Introduction
+
 This repo is for the project that is going to build various virtual machine images in `qcow2` format. The images can be imported into IBMCLOUD Cloud Object Storage (COS) and be served as custom images.
 
 The required tools are from open source projects such as:
