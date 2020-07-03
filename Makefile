@@ -6,11 +6,11 @@ REMOTE_BRANCH ?= master
 ## Options
 default: all
 
-all: build run-tests cleanup
+#all: build run-tests cleanup
+all: run-tests cleanup
 
 build:
-  docker pull docker.pkg.github.com/ibm-cloud/ibmcloud-image-builder/ibmcloud-image-builder:main
-	# docker build . -f Dockerfile -t $(IMAGE_NAME):$(IMAGE_VERSION_LATEST)
+	docker build . -f Dockerfile -t $(IMAGE_NAME):$(IMAGE_VERSION_LATEST)
 
 run-tests:
 	docker run --privileged -v `pwd`:/ibmcloud-image-builder ${IMAGE_NAME}:${IMAGE_VERSION_LATEST} /bin/bash -c "cd packer/ubuntu/bionic/base  ; ./packer-build.sh"

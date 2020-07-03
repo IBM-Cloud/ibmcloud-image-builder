@@ -5,5 +5,5 @@ service:
   - docker
 
 scripts:
+  - docker pull docker.pkg.github.com/ibm-cloud/ibmcloud-image-builder/ibmcloud-image-builder:main
   - make
-  #- docker build . -f Dockerfile -t ibmcloud-image-builder
