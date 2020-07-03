@@ -17,6 +17,9 @@ alpine_build:
 	echo '{"experimental": true}' | sudo tee /etc/docker/daemon.json; sudo service docker restart; docker version
 	docker build --squash . -f Dockerfile -t $(IMAGE_NAME):$(IMAGE_VERSION_LATEST)
 
+ubuntu_build:
+	docker build --squash . -f Dockerfile.ubuntu -t $(IMAGE_NAME):$(IMAGE_VERSION_LATEST)
+
 build:
 	docker build --squash . -f Dockerfile -t $(IMAGE_NAME):$(IMAGE_VERSION_LATEST)
 
