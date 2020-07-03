@@ -7,12 +7,13 @@ REMOTE_BRANCH ?= master
 default: all
 
 all: build run-tests cleanup
+alpine_all: alpine_build run-tests cleanup
 
-build:
+alpine_build:
 	- echo '{"experimental": true}' | sudo tee /etc/docker/daemon.json; sudo service docker restart; docker version
 	- docker build --squash . -f Dockerfile -t $(IMAGE_NAME):$(IMAGE_VERSION_LATEST)
 
-mac_build:
+build:
 	docker build --squash . -f Dockerfile -t $(IMAGE_NAME):$(IMAGE_VERSION_LATEST)
 
 run-tests:
