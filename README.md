@@ -1,6 +1,8 @@
 # ibmcloud-image-builder
 
-![Docker](https://github.com/IBM-Cloud/ibmcloud-image-builder/workflows/Docker/badge.svg) [![Build Status](https://travis-ci.org/IBM-Cloud/ibmcloud-image-builder.svg?branch=master)](https://travis-ci.org/IBM-Cloud/ibmcloud-image-builder)  dockerhub: https://hub.docker.com/r/syibm/ibmcloud-image-builder
+![Docker](https://github.com/IBM-Cloud/ibmcloud-image-builder/workflows/Docker/badge.svg) [![Build Status](https://travis-ci.org/IBM-Cloud/ibmcloud-image-builder.svg?branch=master)](https://travis-ci.org/IBM-Cloud/ibmcloud-image-builder)
+
+https://hub.docker.com/r/syibm/ibmcloud-image-builder
 
 # Release Readiness (v0.1.0)
 
