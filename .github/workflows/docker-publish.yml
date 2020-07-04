@@ -98,7 +98,7 @@ jobs:
 
       - name: Push image
         run: |
-          IMAGE_ID=docker.com/syibm/$IMAGE_NAME
+          IMAGE_ID=syibm/$IMAGE_NAME
 
           # Change all uppercase to lowercase
           IMAGE_ID=$(echo $IMAGE_ID | tr '[A-Z]' '[a-z]')
