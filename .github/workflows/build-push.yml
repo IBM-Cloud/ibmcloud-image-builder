@@ -1,0 +1,18 @@
+name: Publish Docker image
+on:
+  release:
+    types: [published]
+jobs:
+  push_to_registries:
+    name: Push Docker image to multiple registries
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out the repo
+        uses: actions/checkout@v2
+      - name: Push to Docker Hub
+        uses: docker/build-push-action@v1
+        with:
+          username: syibm
+          password: ${{ secrets.DOCKER_PASSWORD }}
+          repository: syibm/ibmcloud-image-builder
+          tag_with_ref: true
