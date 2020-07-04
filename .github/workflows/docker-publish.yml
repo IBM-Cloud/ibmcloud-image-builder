@@ -75,42 +75,61 @@ jobs:
           docker tag $IMAGE_NAME $IMAGE_ID:$VERSION
           docker push $IMAGE_ID:$VERSION
 
-  # Push image to DockerHub
-  # See also https://docs.docker.com/docker-hub/builds/
-  push-dockerhub:
-    # Ensure test job passes before pushing image.
-    needs: test
-
+#  # Push image to DockerHub
+#  # See also https://docs.docker.com/docker-hub/builds/
+#  push-dockerhub:
+#    # Ensure test job passes before pushing image.
+#    needs: test
+#
+#    runs-on: ubuntu-latest
+#    if: github.event_name == 'push'
+#
+#    steps:
+#      - uses: actions/checkout@v2
+#
+#      - name: Build image
+#        run: docker build . --file Dockerfile --tag $IMAGE_NAME
+#
+#      - name: Log into registry
+#        run: echo "${{ secrets.DOCKER_PASSWORD }}" | docker login -u syibm --password-stdin
+#
+#      - name: Push image
+#        run: |
+#          IMAGE_ID=syibm/$IMAGE_NAME
+#
+#          # Change all uppercase to lowercase
+#          IMAGE_ID=$(echo $IMAGE_ID | tr '[A-Z]' '[a-z]')
+#
+#          # Strip git ref prefix from version
+#          VERSION=$(echo "${{ github.ref }}" | sed -e 's,.*/\(.*\),\1,')
+#
+#          # Strip "v" prefix from tag name
+#          [[ "${{ github.ref }}" == "refs/tags/"* ]] && VERSION=$(echo $VERSION | sed -e 's/^v//')
+#
+#          # Use Docker `latest` tag convention
+#          [ "$VERSION" == "main" ] && VERSION=latest
+#
+#          echo IMAGE_ID=$IMAGE_ID
+#          echo VERSION=$VERSION
+#
+#          docker tag $IMAGE_NAME $IMAGE_ID:$VERSION
+#          docker push $IMAGE_ID:$VERSION
+#
+name: Publish Docker image
+on:
+  release:
+    types: [published]
+jobs:
+  push_to_registries:
+    name: Push Docker image to multiple registries
     runs-on: ubuntu-latest
-    if: github.event_name == 'push'
-
     steps:
-      - uses: actions/checkout@v2
-
-      - name: Build image
-        run: docker build . --file Dockerfile --tag $IMAGE_NAME
-
-      - name: Log into registry
-        run: echo "${{ secrets.DOCKER_PASSWORD }}" | docker login -u syibm --password-stdin
-
-      - name: Push image
-        run: |
-          IMAGE_ID=syibm/$IMAGE_NAME
-
-          # Change all uppercase to lowercase
-          IMAGE_ID=$(echo $IMAGE_ID | tr '[A-Z]' '[a-z]')
-
-          # Strip git ref prefix from version
-          VERSION=$(echo "${{ github.ref }}" | sed -e 's,.*/\(.*\),\1,')
-
-          # Strip "v" prefix from tag name
-          [[ "${{ github.ref }}" == "refs/tags/"* ]] && VERSION=$(echo $VERSION | sed -e 's/^v//')
-
-          # Use Docker `latest` tag convention
-          [ "$VERSION" == "main" ] && VERSION=latest
-
-          echo IMAGE_ID=$IMAGE_ID
-          echo VERSION=$VERSION
-
-          docker tag $IMAGE_NAME $IMAGE_ID:$VERSION
-          docker push $IMAGE_ID:$VERSION
+      - name: Check out the repo
+        uses: actions/checkout@v2
+      - name: Push to Docker Hub
+        uses: docker/build-push-action@v1
+        with:
+          username: syibm
+          password: ${{ secrets.DOCKER_PASSWORD }}
+          repository: syibm/ibmcloud-image-builder
+          tag_with_ref: true
