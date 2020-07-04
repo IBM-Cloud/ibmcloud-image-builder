@@ -27,7 +27,7 @@ The base images that will be built upon:
 
 This repo will also provide how to encrypt the images with Linux Unified Key Setup `luks` based encryption so that those encrypted images can be imported and used to spin up Virtual Server Instances (VSI) from IBM Virtual Private Cloud Generation 2.
 
-The docker image to build this VM images can be pulled from docker hub: https://hub.docker.com/r/syibm/ibmcloud-image-builder
+The docker image that has all the required tools to build this VM images can be pulled from docker hub: https://hub.docker.com/r/syibm/ibmcloud-image-builder
 
 ### The CI environment will be provided as a `Dockerfile` based on Alpine latest, and the CI environment will include:
 * [qemu](https://www.qemu.org)
