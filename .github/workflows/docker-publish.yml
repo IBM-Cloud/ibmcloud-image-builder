@@ -91,7 +91,7 @@ jobs:
         run: docker build . --file Dockerfile --tag $IMAGE_NAME
 
       - name: Log into registry
-        run: echo "${{ secrets.DOCKER_PASSWORD }}" | docker login docker.com -u syibm --password-stdin
+        run: echo "${{ secrets.DOCKER_PASSWORD }}" | docker login -u syibm --password-stdin
 
       - name: Push image
         run: |
