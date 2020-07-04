@@ -2,9 +2,9 @@
 
 ![Docker](https://github.com/IBM-Cloud/ibmcloud-image-builder/workflows/Docker/badge.svg) [![Build Status](https://travis-ci.org/IBM-Cloud/ibmcloud-image-builder.svg?branch=master)](https://travis-ci.org/IBM-Cloud/ibmcloud-image-builder)
 
-# Release Readiness
+# Release Readiness (v0.1.0)
 
-* v0.1.0 (packer template for Ubuntu 18.04, CentOS 7)
+The first official release: v0.1.0 (packer template for Ubuntu 18.04, CentOS 7 and tools)
 - [x] templates for base and docker per each OS
 - [x] build locally
 - [x] CI build
