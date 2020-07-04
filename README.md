@@ -10,7 +10,7 @@
 - [x] CI build
 - [x] github releases is ready
 - [x] github packages is ready
-- [ ] DockerHub image repository is ready
+- [x] DockerHub image repository is ready
 
 # Introduction
 
