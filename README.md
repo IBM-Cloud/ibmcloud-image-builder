@@ -11,7 +11,7 @@ The first official release: v0.1.0
 - [x] CI build
 - [x] github releases is ready
 - [x] github packages is ready
-- [x] DockerHub image repository is ready
+- [x] DockerHub image repository: https://hub.docker.com/r/syibm/ibmcloud-image-builder
 
 # Introduction
 
