@@ -16,12 +16,12 @@ The first official release: v0.1.0
 # Motivation
 
 ### Declarative Image Build
-Why I proposed and created this project? I wanted to have a way to build an image to be used in IBM Cloud. The way should be the best to serve me, and that will be consequently serve the best for the customers of IBM Cloud. What required to be built an image, **declaratively**? I think the minimum requirements will be the name and version of O.S. That's the start, when someone wants to customize an image with the list of one's desirable packages, then it can be considered to have a list of packages. In terms of cloud image, then the list of packages will be `cloud-init` user data. Do I have to care how to build the image? I don't think so. That's the motivation of this project. I wanted to build an image declaratively as depicted below.
+What required to be built an image, **declaratively**? The minimum requirements will be the name and version of O.S. That's the start, when someone wants to customize an image with the list of one's desirable packages, then it can be considered to have a list of packages. In terms of cloud image, then the list of packages will be `cloud-init` user data. That's the motivation of this project: Building a cloud image declaratively.
 
 ![Custom Image](picture/custom-image.png)
 
 ### Custom Encrypted Image
-With the same token, when I want to encrypt my image, how should I build one? I should be able to build one with an uncrypted image and encryption key. That should be it.
+The same token applies to encrypt an image. Anyone should be able to build one with an uncrypted image and encryption key. That should be it.
 
 ![Custom Encrypted Image](picture/custom-encrypted-image.png)
 
