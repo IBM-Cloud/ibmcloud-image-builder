@@ -21,7 +21,7 @@ What required to build a cloud image, **declaratively**? The minimum requirement
 ![Custom Image](picture/custom-image.png)
 
 ### Custom Encrypted Image
-The same token applies to encrypt an image. Anyone should be able to build one with an uncrypted image and encryption key. That should be it.
+The same token applies to encrypt an image. Anyone should be able to build one by just providing an uncrypted image and encryption key.
 
 ![Custom Encrypted Image](picture/custom-encrypted-image.png)
 
