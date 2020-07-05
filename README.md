@@ -121,7 +121,7 @@ The extra `docker` templates in addtion to `base` templates are for the informat
 
 # How to build an encrypted image with you DEK (Data Encryption Key)
 
-Attach to the docker, and
+By default all the images will be encrypted with a given `encryption key`: `JustMySimpleSecret`. If the image required to be encrypted with a different encryption key, then attach to the dev docker, and
 ```
 cd "proper directory"
 ./packer-build.sh "Your DEK here"
