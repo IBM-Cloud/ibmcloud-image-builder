@@ -4,15 +4,14 @@
 
 https://hub.docker.com/r/syibm/ibmcloud-image-builder
 
-# Release Readiness (v0.1.0)
+# v0.1.0 Release Readiness: Planned to release on 07/06/2020
 
-The first official release: v0.1.0 (packer template for Ubuntu 18.04, CentOS 7 and tools)
-- [x] templates for base and docker per each OS
-- [x] build locally
+The first official release: v0.1.0
+- [x] templates for base and docker per each OS : Ubuntu 18.04, CentOS 7
 - [x] CI build
 - [x] github releases is ready
 - [x] github packages is ready
-- [x] DockerHub image repository is ready
+- [x] DockerHub image repository: https://hub.docker.com/r/syibm/ibmcloud-image-builder
 
 # Motivation
 
