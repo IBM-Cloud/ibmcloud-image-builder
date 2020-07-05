@@ -120,6 +120,8 @@ The extra `docker` templates in addtion to `base` templates are for the informat
 * Do not change any other files under the directory except ansible directory; In ansible directory you can add more sophisticated ansible practices.
 
 # How to build an encrypted image with you DEK (Data Encryption Key)
+
+Attach to the docker, and
 ```
 cd "proper directory"
 ./packer-build.sh "Your DEK here"
