@@ -176,6 +176,10 @@ $ tree -L 5
 22 directories, 20 files
 ```
 
+# Example Virtual Server Instance created with the custom image generated with one of the templates
+
+![vsi-ibmcloud-image-builder](picture/vsi-ibmcloud-image-builder.png)
+
 
 
 # Acknowledgement
