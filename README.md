@@ -117,7 +117,7 @@ The extra `docker` templates in addtion to `base` templates are for the informat
 2. change either shell/user-data.sh or ansible/playbook.yml
 3. change the image name in packer-builder.sh ... hmm, this needs to be refactored later.
 
-* Do not change any other files under the directory except ansible directory; In ansible directory you can add more sophisticated ansible practices.
+
 
 # How to build an encrypted image with you DEK (Data Encryption Key)
 
