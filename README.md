@@ -16,7 +16,7 @@ The first official release: v0.1.0
 # Motivation
 
 ### Declarative Image Build
-What required to be built an image, **declaratively**? The minimum requirements will be the name and version of O.S. That's the start, when someone wants to customize an image with the list of one's desirable packages, then it can be considered to have a list of packages. In terms of cloud image, then the list of packages will be `cloud-init` user data. That's the motivation of this project: Building a cloud image declaratively.
+What required to build a cloud image, **declaratively**? The minimum requirements will be the name and version of O.S. That's the start, when someone wants to customize an image with the list of one's desirable packages, then it can be considered to have a list of packages. In terms of cloud image, then the list of packages will be `cloud-init` user data. That's the motivation of this project: Building a cloud image declaratively.
 
 ![Custom Image](picture/custom-image.png)
 
