@@ -25,7 +25,7 @@ The same token applies to encrypt an image. Anyone should be able to build one b
 
 ![Custom Encrypted Image](picture/custom-encrypted-image.png)
 
-The motivation of this project is applying one of the principles that we decided on how we are going execute: `declarative`, nothing more than that.
+
 
 
 # Introduction
