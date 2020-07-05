@@ -93,10 +93,21 @@ $ tree -L 3
 
 # How To
 
+Without building the dev docker, just pull the docker image:
 ```
 $ git clone git@github.com:IBM-Cloud/ibmcloud-image-builder.git
 $ cd ibmcloud-image-builder
-$ make
+$ docker pull syibm/ibmcloud-image-builder
+$ docker tag  syibm/ibmcloud-image-builder ibmcloud-image-builder
+$ make build-images
+```
+
+With building the dev docker:
+```
+$ git clone git@github.com:IBM-Cloud/ibmcloud-image-builder.git
+$ cd ibmcloud-image-builder
+$ make build
+$ make build-images
 ```
 
 Note: If a new packer template needs to be created, then please repeat yourself.

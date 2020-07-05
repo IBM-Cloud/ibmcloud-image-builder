@@ -6,7 +6,7 @@ REMOTE_BRANCH ?= master
 ## Options
 default: all
 
-all: build run-tests cleanup
+all: build build-images cleanup
 
 build:
 	docker build . -f Dockerfile -t $(IMAGE_NAME):$(IMAGE_VERSION_LATEST)
@@ -14,7 +14,7 @@ build:
 ubuntu-build:
 	docker build . -f Dockerfile.ubuntu -t $(IMAGE_NAME):$(IMAGE_VERSION_LATEST)
 
-run-tests:
+build-images:
 	docker run --privileged -v `pwd`:/ibmcloud-image-builder ${IMAGE_NAME}:${IMAGE_VERSION_LATEST} /bin/bash -c "cd packer/ubuntu/bionic/base  ; ./packer-build.sh"
 	docker run --privileged -v `pwd`:/ibmcloud-image-builder ${IMAGE_NAME}:${IMAGE_VERSION_LATEST} /bin/bash -c "cd packer/ubuntu/bionic/docker; ./packer-build.sh"
 	docker run --privileged -v `pwd`:/ibmcloud-image-builder ${IMAGE_NAME}:${IMAGE_VERSION_LATEST} /bin/bash -c "cd packer/centos/7/base       ; ./packer-build.sh"
