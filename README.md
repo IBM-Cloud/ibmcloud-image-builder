@@ -1,4 +1,63 @@
-# ibmcloud-image-builder
+# IBM Cloud Image Builder
+
+
+The Cloud Image Builder makes it easy to build custom images for the IBM Cloud.  Custom images supports specialized VMs that do exactly what you want when they first start up.
+
+The Cloud Image Builder also supports encrypting your custom images so you can protect any private data you have on that VM.
+
+# Try it out
+
+This project is set up to run on Mac or Linux.  Support for Windows is coming in the future.
+
+## Dependencies
+
+Before you can build a custom image you must install the following dependencies:
+
+* [Docker](https://www.docker.com/products/docker-desktop)
+* Make
+
+### Installing Make on Macos
+
+To install the `make` command on MacOS,	you need to install the Xcode command line tools by executing the following command in your terminal:
+
+```
+xcode-select --install
+```
+
+When the dialog pops up click on the *Install* button.
+
+## Building your first custom image
+
+Start by pulling an already built image from the Docker registry.  This will download, encrypt, and package the image for deployment.
+
+```
+git clone git@github.com:IBM-Cloud/ibmcloud-image-builder.git
+cd ibmcloud-image-builder
+docker pull syibm/ibmcloud-image-builder
+docker tag  syibm/ibmcloud-image-builder ibmcloud-image-builder
+make build-images
+```
+
+> At this point we should have next steps for how you can see the image and deploy it.
+
+
+With building the dev docker:
+```
+git clone git@github.com:IBM-Cloud/ibmcloud-image-builder.git
+cd ibmcloud-image-builder
+make build
+make build-images
+```
+
+> We need to make clear what this command does and how it is different from the previous one.
+
+Note: If a new packer template needs to be created, then please repeat yourself.
+The extra `docker` templates in addition to `base` templates are for the information purpose on how to add new templates.
+
+1. copy the existing folder and rename the directory
+2. change either shell/user-data.sh or ansible/playbook.yml
+3. change the image name in packer-builder.sh ... hmm, this needs to be refactored later.
+
 
 ![Docker](https://github.com/IBM-Cloud/ibmcloud-image-builder/workflows/Docker/badge.svg) [![Build Status](https://travis-ci.org/IBM-Cloud/ibmcloud-image-builder.svg?branch=master)](https://travis-ci.org/IBM-Cloud/ibmcloud-image-builder)
 
@@ -95,23 +154,23 @@ $ tree -L 3
 
 Without building the dev docker, just pull the docker image:
 ```
-$ git clone git@github.com:IBM-Cloud/ibmcloud-image-builder.git
-$ cd ibmcloud-image-builder
-$ docker pull syibm/ibmcloud-image-builder
-$ docker tag  syibm/ibmcloud-image-builder ibmcloud-image-builder
-$ make build-images
+git clone git@github.com:IBM-Cloud/ibmcloud-image-builder.git
+cd ibmcloud-image-builder
+docker pull syibm/ibmcloud-image-builder
+docker tag  syibm/ibmcloud-image-builder ibmcloud-image-builder
+make build-images
 ```
 
 With building the dev docker:
 ```
-$ git clone git@github.com:IBM-Cloud/ibmcloud-image-builder.git
-$ cd ibmcloud-image-builder
-$ make build
-$ make build-images
+git clone git@github.com:IBM-Cloud/ibmcloud-image-builder.git
+cd ibmcloud-image-builder
+make build
+make build-images
 ```
 
 Note: If a new packer template needs to be created, then please repeat yourself.
-The extra `docker` templates in addtion to `base` templates are for the information purpose on how to add new templates.
+The extra `docker` templates in addition to `base` templates are for the information purpose on how to add new templates.
 
 1. copy the existing folder and rename the directory
 2. change either shell/user-data.sh or ansible/playbook.yml
