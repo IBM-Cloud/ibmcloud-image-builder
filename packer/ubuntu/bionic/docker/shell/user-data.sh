@@ -79,5 +79,5 @@ echo "Install something here: TBD"
 #    pyenv install 3.6.9 && \
 #    pyenv global 3.6.9
 #
-#    chown -R ubuntu:ubuntu /home/ubuntu/*
+#    chown -R ubuntu:ubuntu /home/ubuntu/.
 #
