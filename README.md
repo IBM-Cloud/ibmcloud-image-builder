@@ -66,7 +66,7 @@ The building time of this Docker image is < 1 min, I guess it can be used as an 
 
 The building time of this Docker image is about 7 mins from my machines, it takes long. While preparing a repository in docker hub, maybe worthy to try once. It won't be changed very often any more.
 
-# Availalble images
+# Available images
 
 So far we have Ubuntu 18.04 and CentOS 7 images as below:
 * Ubuntu 18.04 Base
