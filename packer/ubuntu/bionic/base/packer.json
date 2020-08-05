@@ -2,7 +2,7 @@
   "variables": {
       "image_url": "https://cloud-images.ubuntu.com/bionic/current/bionic-server-cloudimg-amd64.img",
       "image_checksum_url": "https://cloud-images.ubuntu.com/bionic/current/SHA256SUMS",
-      "image_name": "ubuntu-bionic",
+      "image_name": "packer",
       "ssh_private_key_file": "{{env `PACKER_PRIVATE_KEY`}}"
   },
   "builders": [
@@ -12,7 +12,7 @@
       "iso_checksum": "file:{{user `image_checksum_url`}}",
       "shutdown_command": "rm -f /home/ubuntu/.ssh/authorized_keys && sudo rm -f /root/.ssh/authorized_keys && echo 'packer' | sudo -S shutdown -P now",
       "output_directory": "output-qemu",
-      "disk_size": "5120M",
+      "disk_size": "100G",
       "format": "qcow2",
       "http_directory": "http",
       "communicator": "ssh",

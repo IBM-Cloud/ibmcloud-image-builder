@@ -4,14 +4,41 @@
 
 https://hub.docker.com/r/syibm/ibmcloud-image-builder
 
-# v0.1.0 Release Readiness: Planned to release on 07/06/2020
 
-The first official release: v0.1.0
-- [x] templates for base and docker per each OS : Ubuntu 18.04, CentOS 7
-- [x] CI build
-- [x] github releases is ready
-- [x] github packages is ready
-- [x] DockerHub image repository: https://hub.docker.com/r/syibm/ibmcloud-image-builder
+# Try it out
+
+This project is set up to run on Mac or Linux.
+
+## Dependencies
+
+Before you can build a custom image you must install the following dependencies:
+
+* [Docker](https://www.docker.com/products/docker-desktop)
+* make
+
+### Installing make on macOS
+
+To install the `make` command on macOS,	you need to install the Xcode command line tools by executing the following command in your terminal:
+
+```
+xcode-select --install
+```
+
+When the dialog pops up click on the *Install* button.
+
+## Building your first custom image
+
+Start by pulling an already built image from the Docker registry.  This will download, encrypt, and package the image for deployment.
+
+```
+git clone git@github.com:IBM-Cloud/ibmcloud-image-builder.git
+cd ibmcloud-image-builder
+docker pull syibm/ibmcloud-image-builder
+docker tag  syibm/ibmcloud-image-builder ibmcloud-image-builder
+make build-images
+```
+
+
 
 # Motivation
 
@@ -102,7 +129,7 @@ $ docker tag  syibm/ibmcloud-image-builder ibmcloud-image-builder
 $ make build-images
 ```
 
-With building the dev docker:
+Or we can build the docker image(`make build`) locally as below:
 ```
 $ git clone git@github.com:IBM-Cloud/ibmcloud-image-builder.git
 $ cd ibmcloud-image-builder
@@ -115,16 +142,13 @@ The extra `docker` templates in addtion to `base` templates are for the informat
 
 1. copy the existing folder and rename the directory
 2. change either shell/user-data.sh or ansible/playbook.yml
-3. change the image name in packer-builder.sh ... hmm, this needs to be refactored later.
-
 
 
 # How to build an encrypted image with your DEK (Data Encryption Key)
 
 By default all the images will be encrypted with a given `encryption key`: `JustMySimpleSecret`. If the image required to be encrypted with a different encryption key, then attach to the build docker, and
 ```
-cd "proper directory"
-./packer-build.sh "Your DEK here"
+./packer-build.sh packer/os/platform "Your DEK here"
 ```
 
 ```
@@ -135,19 +159,15 @@ $ tree -L 5
 │       ├── base
 │       │   ├── ansible
 │       │   │   └── playbook.yml
-│       │   ├── centos.json
 │       │   ├── http
-│       │   ├── packer-build.sh
-│       │   ├── packer-delete.sh
+│       │   ├── packer.json
 │       │   └── shell
 │       │       └── user-data.sh
 │       └── docker
 │           ├── ansible
 │           │   └── playbook.yml
-│           ├── centos.json
 │           ├── http
-│           ├── packer-build.sh
-│           ├── packer-delete.sh
+│           ├── packer.json
 │           └── shell
 │               └── user-data.sh
 └── ubuntu
@@ -156,24 +176,20 @@ $ tree -L 5
     │   │   ├── ansible
     │   │   │   └── playbook.yml
     │   │   ├── http
-    │   │   ├── packer-build.sh
-    │   │   ├── packer-delete.sh
-    │   │   ├── shell
-    │   │   │   └── user-data.sh
-    │   │   └── ubuntu.json
+    │   │   ├── packer.json
+    │   │   └── shell
+    │   │       └── user-data.sh
     │   └── docker
     │       ├── ansible
     │       │   └── playbook.yml
     │       ├── http
-    │       ├── packer-build.sh
-    │       ├── packer-delete.sh
-    │       ├── shell
-    │       │   └── user-data.sh
-    │       └── ubuntu.json
+    │       ├── packer.json
+    │       └── shell
+    │           └── user-data.sh
     ├── focal
     └── xenial
 
-22 directories, 20 files
+22 directories, 12 files
 ```
 
 # Example Virtual Server Instance created with the custom image generated with one of the templates
