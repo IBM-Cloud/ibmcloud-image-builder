@@ -1,6 +1,6 @@
 #!/bin/bash
 set -ex
-cd ./packer/$1
+cd $1
 # delete the images and cleanup
 rm -rf output-qemu
 rm -rf packer_cache

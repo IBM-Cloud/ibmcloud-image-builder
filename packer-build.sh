@@ -2,10 +2,10 @@
 set -ex
 
 # change directory
-cd ./packer/$1
+cd $1
 
 # prepare to build
-DIR_TO_FILENAME=$(echo "$1" | tr '/' '-')
+DIR_TO_FILENAME=$(echo "$1" | sed 's#packer/##g' | tr '/' '-')
 NEW_IMAGE="output-qemu/ibmcloud-$DIR_TO_FILENAME-amd64-100G.qcow2"
 ENCRYPTED_IMAGE="output-qemu/ibmcloud-encrypted-$DIR_TO_FILENAME-amd64-100G.qcow2"
 
