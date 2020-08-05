@@ -31,7 +31,7 @@ ansible-galaxy install geerlingguy.docker
 # build the images
 # base
 
-PACKER_LOG=0 packer build centos.json
+PACKER_LOG=0 packer build packer.json
 
 # Time to make the below as a function at the next PR
 NEW_IMAGE="output-qemu/ibmcloud-centos-7-docker-cloudimg-amd64-100G.qcow2"

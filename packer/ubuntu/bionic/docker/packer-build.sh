@@ -29,7 +29,7 @@ cloud-localds disk-ssh-pub.img user-data
 ansible-galaxy install geerlingguy.docker
 
 # base+docker
-PACKER_LOG=0 packer build ubuntu.json
+PACKER_LOG=0 packer build packer.json
 
 NEW_IMAGE="output-qemu/ibmcloud-ubuntu-bionic-cloudimg-docker-amd64-100G.qcow2"
 ENCRYPTED_IMAGE="output-qemu/ibmcloud-ubuntu-bionic-cloudimg-docker-amd64-100G-encrypted.qcow2"
