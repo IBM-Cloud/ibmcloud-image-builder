@@ -35,7 +35,7 @@ NEW_IMAGE="output-qemu/ibmcloud-ubuntu-bionic-cloudimg-docker-amd64-100G.qcow2"
 ENCRYPTED_IMAGE="output-qemu/ibmcloud-ubuntu-bionic-cloudimg-docker-amd64-100G-encrypted.qcow2"
 
 qemu-img resize output-qemu/packer.qcow2 100G
-qemu-img convert -f qcow2 -O qcow2 output-qemu/ubuntu-bionic.qcow2 ${NEW_IMAGE}
+qemu-img convert -f qcow2 -O qcow2 output-qemu/packer.qcow2 ${NEW_IMAGE}
 qemu-img info ${NEW_IMAGE}
 rm output-qemu/packer.qcow2
 

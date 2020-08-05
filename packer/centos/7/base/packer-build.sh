@@ -38,7 +38,7 @@ NEW_IMAGE="output-qemu/ibmcloud-centos-7-cloudimg-amd64-100G.qcow2"
 ENCRYPTED_IMAGE="output-qemu/ibmcloud-centos-7-cloudimg-amd64-100G-encrypted.qcow2"
 
 qemu-img resize output-qemu/packer.qcow2 100G
-qemu-img convert -f qcow2 -O qcow2 output-qemu/centos-7.qcow2 ${NEW_IMAGE}
+qemu-img convert -f qcow2 -O qcow2 output-qemu/packer.qcow2 ${NEW_IMAGE}
 qemu-img info ${NEW_IMAGE}
 rm output-qemu/packer.qcow2
 
