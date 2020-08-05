@@ -4,7 +4,40 @@
 
 https://hub.docker.com/r/syibm/ibmcloud-image-builder
 
-# v0.2.0 Release Readiness: Planned to release on 08/xx/2020
+
+# Try it out
+
+This project is set up to run on Mac or Linux.
+
+## Dependencies
+
+Before you can build a custom image you must install the following dependencies:
+
+* [Docker](https://www.docker.com/products/docker-desktop)
+* make
+
+### Installing make on macOS
+
+To install the `make` command on macOS,	you need to install the Xcode command line tools by executing the following command in your terminal:
+
+```
+xcode-select --install
+```
+
+When the dialog pops up click on the *Install* button.
+
+## Building your first custom image
+
+Start by pulling an already built image from the Docker registry.  This will download, encrypt, and package the image for deployment.
+
+```
+git clone git@github.com:IBM-Cloud/ibmcloud-image-builder.git
+cd ibmcloud-image-builder
+docker pull syibm/ibmcloud-image-builder
+docker tag  syibm/ibmcloud-image-builder ibmcloud-image-builder
+make build-images
+```
+
 
 
 # Motivation
@@ -96,7 +129,7 @@ $ docker tag  syibm/ibmcloud-image-builder ibmcloud-image-builder
 $ make build-images
 ```
 
-With building the dev docker:
+Or we can build the docker image(`make build`) locally as below:
 ```
 $ git clone git@github.com:IBM-Cloud/ibmcloud-image-builder.git
 $ cd ibmcloud-image-builder
