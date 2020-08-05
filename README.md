@@ -4,14 +4,8 @@
 
 https://hub.docker.com/r/syibm/ibmcloud-image-builder
 
-# v0.1.0 Release Readiness: Planned to release on 07/06/2020
+# v0.2.0 Release Readiness: Planned to release on 08/xx/2020
 
-The first official release: v0.1.0
-- [x] templates for base and docker per each OS : Ubuntu 18.04, CentOS 7
-- [x] CI build
-- [x] github releases is ready
-- [x] github packages is ready
-- [x] DockerHub image repository: https://hub.docker.com/r/syibm/ibmcloud-image-builder
 
 # Motivation
 
@@ -115,16 +109,13 @@ The extra `docker` templates in addtion to `base` templates are for the informat
 
 1. copy the existing folder and rename the directory
 2. change either shell/user-data.sh or ansible/playbook.yml
-3. change the image name in packer-builder.sh ... hmm, this needs to be refactored later.
-
 
 
 # How to build an encrypted image with your DEK (Data Encryption Key)
 
 By default all the images will be encrypted with a given `encryption key`: `JustMySimpleSecret`. If the image required to be encrypted with a different encryption key, then attach to the build docker, and
 ```
-cd "proper directory"
-./packer-build.sh "Your DEK here"
+./packer-build.sh packer/os/platform "Your DEK here"
 ```
 
 ```
@@ -135,19 +126,15 @@ $ tree -L 5
 │       ├── base
 │       │   ├── ansible
 │       │   │   └── playbook.yml
-│       │   ├── centos.json
 │       │   ├── http
-│       │   ├── packer-build.sh
-│       │   ├── packer-delete.sh
+│       │   ├── packer.json
 │       │   └── shell
 │       │       └── user-data.sh
 │       └── docker
 │           ├── ansible
 │           │   └── playbook.yml
-│           ├── centos.json
 │           ├── http
-│           ├── packer-build.sh
-│           ├── packer-delete.sh
+│           ├── packer.json
 │           └── shell
 │               └── user-data.sh
 └── ubuntu
@@ -156,24 +143,20 @@ $ tree -L 5
     │   │   ├── ansible
     │   │   │   └── playbook.yml
     │   │   ├── http
-    │   │   ├── packer-build.sh
-    │   │   ├── packer-delete.sh
-    │   │   ├── shell
-    │   │   │   └── user-data.sh
-    │   │   └── ubuntu.json
+    │   │   ├── packer.json
+    │   │   └── shell
+    │   │       └── user-data.sh
     │   └── docker
     │       ├── ansible
     │       │   └── playbook.yml
     │       ├── http
-    │       ├── packer-build.sh
-    │       ├── packer-delete.sh
-    │       ├── shell
-    │       │   └── user-data.sh
-    │       └── ubuntu.json
+    │       ├── packer.json
+    │       └── shell
+    │           └── user-data.sh
     ├── focal
     └── xenial
 
-22 directories, 20 files
+22 directories, 12 files
 ```
 
 # Example Virtual Server Instance created with the custom image generated with one of the templates
