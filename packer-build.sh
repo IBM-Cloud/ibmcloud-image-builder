@@ -6,7 +6,7 @@ cd ./packer/$1
 # prepare to build
 DIR_TO_FILENAME=$(echo "$1" | tr '/' '-')
 NEW_IMAGE="output-qemu/ibmcloud-$DIR_TO_FILENAME-amd64-100G.qcow2"
-ENCRYPTED_IMAGE="output-qemu/ibmcloud-$DIR_TO_FILENAME-amd64-100G-encrypted.qcow2"
+ENCRYPTED_IMAGE="output-qemu/ibmcloud-encrypted-$DIR_TO_FILENAME-amd64-100G.qcow2"
 
 if [ -n "$2" ]; then
   SECRET="$2"
