@@ -40,7 +40,7 @@ ENCRYPTED_IMAGE="output-qemu/ibmcloud-centos-7-cloudimg-amd64-100G-encrypted.qco
 qemu-img resize output-qemu/packer.qcow2 100G
 qemu-img convert -f qcow2 -O qcow2 output-qemu/centos-7.qcow2 ${NEW_IMAGE}
 qemu-img info ${NEW_IMAGE}
-rm output-qemu/centos-7.qcow2
+rm output-qemu/packer.qcow2
 
 # create an example encrypted image
 if [ -n "$1" ]; then
