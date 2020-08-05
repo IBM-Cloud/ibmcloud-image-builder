@@ -2,7 +2,7 @@
   "variables": {
       "image_url": "https://cloud.centos.org/centos/7/images/CentOS-7-x86_64-GenericCloud-2003.qcow2",
       "image_checksum_url": "https://cloud.centos.org/centos/7/images/sha256sum.txt",
-      "image_name": "centos-7",
+      "image_name": "packer",
       "ssh_private_key_file": "{{env `PACKER_PRIVATE_KEY`}}"
   },
   "builders": [
