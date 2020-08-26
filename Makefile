@@ -12,7 +12,7 @@ build:
 	docker build . -f Dockerfile -t $(IMAGE_NAME):$(IMAGE_VERSION_LATEST)
 
 ubuntu-build:
-	docker build . -f Dockerfile.ubuntu -t $(IMAGE_NAME):$(IMAGE_VERSION_LATEST)
+	docker build . -f Dockerfile.ubuntu -t $(IMAGE_NAME)-ubuntu:$(IMAGE_VERSION_LATEST)
 
 build-images:
 	docker run --privileged -v `pwd`:/ibmcloud-image-builder ${IMAGE_NAME}:${IMAGE_VERSION_LATEST} /bin/bash -c "./packer-build.sh packer/ubuntu/bionic/base   "

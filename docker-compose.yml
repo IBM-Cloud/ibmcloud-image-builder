@@ -11,7 +11,7 @@ services:
     privileged: true
     build:
       context: .
-    image: ibmcloud-image-builder:latest
+    image: ibmcloud-image-builder-ubuntu:latest
     volumes:
       # For future ssh use in development
       - ~/.ssh:/home/ubuntu/.ssh:ro
