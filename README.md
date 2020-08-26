@@ -90,8 +90,11 @@ The building time of this Docker image is < 1 min, I guess it can be used as an 
 * go 1.13
 * python3 3.6.9 (pyenv, pipenv)
 * ansible 2.9.9
+* texlive-full 2019
+* graphviz 2.42
+* noweb 2.11b
 
-The building time of this Docker image is about 7 mins from my machines, it takes long. While preparing a repository in docker hub, maybe worthy to try once. It won't be changed very often any more.
+The building time of this Ubuntu Docker image is > 10 mins from my machines, it takes very long. While preparing a repository in docker hub, maybe worthy to try once. It won't be changed very often any more.
 
 # Available images
 
