@@ -1,0 +1,29 @@
+---
+# if you want to try the docker as your development env:
+# Prerequisite if you want to run TF or CLI:
+#     export IBMCLOUD_API_KEY=<YOURS>
+#     source cloud.env
+# Run:
+#   docker-compose run ibmcloud-image-builder
+version: '3.3'
+services:
+  ibmcloud-image-builder:
+    privileged: true
+    build:
+      context: .
+    image: ibmcloud-image-builder:latest
+    volumes:
+      # For future ssh use in development
+      - ~/.ssh:/home/ubuntu/.ssh:ro
+      - ~/test/github/ibmcloud-image-builder/:/ibmcloud-image-builder
+    environment:
+      IBMCLOUD_API_KEY: "$IBMCLOUD_API_KEY"
+      IBMCLOUD_API_ENDPOINT: $IBMCLOUD_API_ENDPOINT
+      IBMCLOUD_IAM_API_ENDPOINT: "$IBMCLOUD_IAM_API_ENDPOINT"
+      IBMCLOUD_IS_NG_API_ENDPOINT: "$IBMCLOUD_IS_NG_API_ENDPOINT"
+      # Resource Group Related
+      IBMCLOUD_RESOURCE_CATALOG_API_ENDPOINT: $IBMCLOUD_RESOURCE_CATALOG_API_ENDPOINT
+      IBMCLOUD_RESOURCE_MANAGEMENT_API_ENDPOINT: $IBMCLOUD_RESOURCE_MANAGEMENT_API_ENDPOINT
+      IBMCLOUD_RESOURCE_CONTROLLER_API_ENDPOINT: $IBMCLOUD_RESOURCE_CONTROLLER_API_ENDPOINT
+
+      working_dir: /ibmcloud-image-builder

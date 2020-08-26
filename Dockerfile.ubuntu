@@ -1,7 +1,14 @@
 FROM ubuntu:20.04
+
+ARG USERNAME=ubuntu
+ARG USER_UID=1000
+ARG USER_GID=1000
+
+RUN groupadd --gid $USER_GID $USERNAME && \
+    useradd -s /bin/bash --uid $USER_UID --gid $USER_GID -m $USERNAME
+
 LABEL "maintainer"="SeungYeop Yang"
 ARG WDIR=/ibmcloud-image-builder
-ENV HOME /root
 
 ENV DEBIAN_FRONTEND noninteractive
 ENV TZ America/Central
@@ -29,70 +36,82 @@ RUN set -ex && \
     qemu \
     qemu-system-x86 \
     cloud-image-utils \
+    texlive-full \
+    noweb \
     sudo && \
     apt-get upgrade -y \
     e2fsprogs \
     libgcrypt20 \
-    libgnutls30
+    libgnutls30 && \
+    apt autoremove -y && \
+    apt clean -y && \
+    rm -rf /var/lib/apt/lists/* && \
+    echo $USERNAME ALL=\(root\) NOPASSWD:ALL > /etc/sudoers.d/$USERNAME && \
+    chmod 0440 /etc/sudoers.d/$USERNAME
+
+# set environmental variables
+USER $USERNAME
+ENV HOME "/home/${USERNAME}"
+ENV LC_ALL "C.UTF-8"
+ENV LANG "en_US.UTF-8"
+
 
     # golang 1.13
 RUN set -ex && \
+    cd ${HOME} && \
     wget https://dl.google.com/go/go1.13.9.linux-amd64.tar.gz && \
-    tar xzf go1.13.9.linux-amd64.tar.gz && \
+    sudo tar xzf go1.13.9.linux-amd64.tar.gz && \
     rm go1.13.9.linux-amd64.tar.gz && \
-    mv go /usr/local/go-1.13
+    sudo mv go /usr/local/go-1.13
 
 ENV GOROOT=/usr/local/go-1.13
 ENV PATH=$GOROOT/bin:${HOME}/go/bin:$PATH
 
     # terraform
 RUN set -ex && \
-    wget https://releases.hashicorp.com/terraform/0.12.25/terraform_0.12.25_linux_amd64.zip && \
-    unzip terraform_0.12.25_linux_amd64.zip && \
+    cd ${HOME} && \
+    wget https://releases.hashicorp.com/terraform/0.12.29/terraform_0.12.29_linux_amd64.zip && \
+    unzip terraform_0.12.29_linux_amd64.zip && \
     chmod +x terraform && \
-    rm terraform_0.12.25_linux_amd64.zip && \
-    mv terraform /usr/local/bin && \
+    rm terraform_0.12.29_linux_amd64.zip && \
+    sudo mv terraform /usr/local/bin && \
     # ibm provider
-    wget https://github.com/IBM-Cloud/terraform-provider-ibm/releases/download/v1.8.0/linux_amd64.zip && \
+    wget https://github.com/IBM-Cloud/terraform-provider-ibm/releases/download/v1.11.0/linux_amd64.zip && \
     unzip linux_amd64.zip && \
     chmod +x terraform-provider-ibm_* && \
-    mv terraform-provider-ibm_* /usr/local/bin && \
+    sudo mv terraform-provider-ibm_* /usr/local/bin && \
     rm linux_amd64.zip && \
     # packer
     wget https://releases.hashicorp.com/packer/1.6.0/packer_1.6.0_linux_amd64.zip && \
     unzip packer_1.6.0_linux_amd64.zip && \
     chmod +x packer && \
     rm packer_1.6.0_linux_amd64.zip && \
-    mv packer /usr/local/bin && \
+    sudo mv packer /usr/local/bin && \
     # vault
     wget https://releases.hashicorp.com/vault/1.4.2/vault_1.4.2_linux_amd64.zip && \
     unzip vault_1.4.2_linux_amd64.zip && \
     chmod +x vault && \
     rm vault_1.4.2_linux_amd64.zip && \
-    mv vault /usr/local/bin
+    sudo mv vault /usr/local/bin
 
     # ibmcloud cli client
     # ibmcloud cli client installs docker
 RUN set -ex && \
-    curl -sL https://ibm.biz/idt-installer | bash && \
-    ibmcloud plugin install vpc-infrastructure -f && \
-    ibmcloud plugin install cloud-object-storage -f && \
-    ibmcloud plugin install key-protect && \
-    ibmcloud plugin install tke && \
+    cd ${HOME} && \
+    sudo curl -sL https://ibm.biz/idt-installer | bash && \
+    sudo ibmcloud plugin install vpc-infrastructure -f && \
+    sudo ibmcloud plugin install cloud-object-storage -f && \
+    sudo ibmcloud plugin install key-protect && \
+    sudo ibmcloud plugin install tke && \
     # docker-compose 1.25.5
-    curl -L "https://github.com/docker/compose/releases/download/1.25.5/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose && \
-    chmod +x /usr/local/bin/docker-compose
+    sudo curl -L "https://github.com/docker/compose/releases/download/1.25.5/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose && \
+    sudo chmod +x /usr/local/bin/docker-compose
 
-RUN apt autoremove -y && \
-    apt clean -y && \
-    rm -rf /var/lib/apt/lists/*
 
 ENV PYENV_ROOT "${HOME}/.pyenv"
 ENV PATH "${HOME}/.pyenv/shims:${HOME}/.pyenv/bin:${PATH}"
 RUN echo 'eval "$(pyenv init -)"' >> ~/.bashrc
 RUN echo 'eval "$(pyenv virtualenv-init -)"' >> ~/.bashrc
-ENV LC_ALL "C.UTF-8"
-ENV LANG "en_US.UTF-8"
 
 COPY requirements.txt ${HOME}/requirements.txt
 
@@ -102,7 +121,7 @@ RUN set -ex && \
     pyenv global 3.6.9 && \
     pip install -r ${HOME}/requirements.txt && \
     rm ${HOME}/requirements.txt && \
-    mkdir -p /integration-testing
+    sudo mkdir -p /integration-testing
     # python 3.6.9
     # install python 3.6.9 set 3.6.9 as global
     # if you want to try python 3.7.5 or higher, then
