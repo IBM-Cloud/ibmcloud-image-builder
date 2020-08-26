@@ -38,6 +38,7 @@ RUN set -ex && \
     cloud-image-utils \
     texlive-full \
     noweb \
+    graphviz \
     sudo && \
     apt-get upgrade -y \
     e2fsprogs \
