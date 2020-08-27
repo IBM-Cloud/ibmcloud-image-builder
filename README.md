@@ -94,7 +94,8 @@ The building time of this Docker image is < 1 min, I guess it can be used as an 
 * graphviz 2.42
 * noweb 2.11b
 
-The building time of this Ubuntu Docker image is > 10 mins from my machines, it takes very long. While preparing a repository in docker hub, maybe worthy to try once. It won't be changed very often any more.
+The building time of this Ubuntu Docker image is > 10 mins from my machines, it takes very long. While preparing a repository in docker hub, maybe worthy to try once. It won't be changed very often any more. This Ubuntu Docker image assumes that you are running the Docker container from a Ubuntu host by default. You can change the `docker-compose.yml` file
+to run this Docker image from another host OS flavor.
 
 # Available images
 
