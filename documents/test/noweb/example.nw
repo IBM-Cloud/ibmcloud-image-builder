@@ -1,0 +1,28 @@
+% noweave -delay -index example.nw > example.tex
+% notangle -Rhello.sh example.nw
+% notangle -Rfoo.sh example.nw
+
+\documentclass{article}
+\usepackage{noweb}
+
+\begin{document}
+\pagestyle{noweb}
+
+Let's see how we can weave and tangle.
+<<hello.sh>>=
+#!/usr/bin/env bash
+echo 'Hello World!'
+@ Now, \LaTeX again.
+
+<<hello.sh>>=
+echo 'Hello World, again!'
+
+@ another hello.
+
+<<foo.sh>>=
+#!/usr/bin/env bash
+echo 'foo bar!'
+
+@ foo bar!
+
+\end{document}

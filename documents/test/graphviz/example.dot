@@ -1,0 +1,8 @@
+#!/usr/bin/env dot
+# example:
+#   $ dot -Tpng -o example.png example.dot
+
+digraph G {
+  main -> parse -> execute;
+  main -> init;
+}
