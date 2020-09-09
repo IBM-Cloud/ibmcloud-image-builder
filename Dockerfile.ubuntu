@@ -65,25 +65,29 @@ RUN set -ex && \
     rm go1.13.9.linux-amd64.tar.gz && \
     sudo mv go /usr/local/go-1.13 && \
     mkdir -p ${HOME}/go && \
-    sudo chown ${USER_UID}:${USER_GID} ${HOME}/go
+    mkdir -p ${HOME}/.terraform.d/plugins && \
+    sudo chown ${USER_UID}:${USER_GID} ${HOME}/go && \
+    sudo chown ${USER_UID}:${USER_GID} ${HOME}/.terraform.d/plugins
 
 ENV GOROOT=/usr/local/go-1.13
-ENV GOPATH=${HOME}/go
-ENV PATH=$GOROOT/bin:${HOME}/go/bin:$PATH
+#ENV GOPATH=${HOME}/go
+RUN set -ex && \
+    git clone https://github.com/tfutils/tfenv.git ~/.tfenv && \
+    echo 'export GOPATH=${HOME}/go' >> ~/.bashrc && \
+    echo 'export PATH=$HOME/.tfenv/bin:$PATH' >> ~/.bashrc
+ENV PATH=${HOME}/.tfenv/bin:$GOROOT/bin:${HOME}/go/bin:$PATH
 
     # terraform
 RUN set -ex && \
     cd ${HOME} && \
-    wget https://releases.hashicorp.com/terraform/0.12.29/terraform_0.12.29_linux_amd64.zip && \
-    unzip terraform_0.12.29_linux_amd64.zip && \
-    chmod +x terraform && \
-    rm terraform_0.12.29_linux_amd64.zip && \
-    sudo mv terraform /usr/local/bin && \
+    tfenv install 0.12.29 && \
+    tfenv install 0.13.2 && \
+    tfenv use 0.12.29 && \
     # ibm provider
-    wget https://github.com/IBM-Cloud/terraform-provider-ibm/releases/download/v1.11.1/linux_amd64.zip && \
+    wget https://github.com/IBM-Cloud/terraform-provider-ibm/releases/download/v1.11.2/linux_amd64.zip && \
     unzip linux_amd64.zip && \
     chmod +x terraform-provider-ibm_* && \
-    sudo mv terraform-provider-ibm_* /usr/local/bin && \
+    sudo mv terraform-provider-ibm_* ~/.terraform.d/plugins && \
     rm linux_amd64.zip && \
     # packer
     wget https://releases.hashicorp.com/packer/1.6.1/packer_1.6.1_linux_amd64.zip && \
