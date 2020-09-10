@@ -16,6 +16,7 @@ services:
       # For future ssh use in development
       - ~/.ssh:/home/ubuntu/.ssh:ro
       - ~/test/github/ibmcloud-image-builder/:/ibmcloud-image-builder
+      - ~/test/genctl/system-tf-base/:/system-tf-base
     environment:
       IBMCLOUD_API_KEY: "$IBMCLOUD_API_KEY"
       IBMCLOUD_API_ENDPOINT: $IBMCLOUD_API_ENDPOINT
