@@ -86,7 +86,7 @@ The building time of this Docker image is < 1 min, I guess it can be used as an 
 * [qemu](https://www.qemu.org)
 * [packer](https://github.com/hashicorp/packer)
 * [ibmcloud cli client](https://github.com/IBM-Cloud/ibm-cloud-cli-release) & plugins
-* [terraform](https://github.com/hashicorp/terraform) & [terraform-provider-ibm](https://github.com/IBM-Cloud/terraform-provider-ibm)
+* [terraform](https://github.com/hashicorp/terraform) 0.12.29, 0.13.2 & tfenv & [terraform-provider-ibm](https://github.com/IBM-Cloud/terraform-provider-ibm)
 * cloud-utils
 * go 1.13
 * python3 3.6.9 (pyenv, pipenv)
