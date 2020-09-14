@@ -84,11 +84,16 @@ RUN set -ex && \
     tfenv install 0.13.2 && \
     tfenv use 0.12.29 && \
     # ibm provider
-    wget https://github.com/IBM-Cloud/terraform-provider-ibm/releases/download/v1.11.2/linux_amd64.zip && \
+    wget https://github.com/IBM-Cloud/terraform-provider-ibm/releases/download/v1.12.0/linux_amd64.zip && \
     unzip linux_amd64.zip && \
     chmod +x terraform-provider-ibm_* && \
     sudo mv terraform-provider-ibm_* ~/.terraform.d/plugins && \
     rm linux_amd64.zip && \
+    # shell provider
+    wget -q https://github.com/scottwinkler/terraform-provider-shell/releases/download/v1.7.3/terraform-provider-shell_1.7.3_linux_amd64.zip && \
+    unzip terraform-provider-shell_1.7.3_linux_amd64.zip && \
+    chmod +x terraform-provider-shell_* && \
+    rm terraform-provider-shell_1.7.3_linux_amd64.zip && \
     # packer
     wget https://releases.hashicorp.com/packer/1.6.1/packer_1.6.1_linux_amd64.zip && \
     unzip packer_1.6.1_linux_amd64.zip && \
