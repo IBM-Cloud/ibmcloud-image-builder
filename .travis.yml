@@ -4,5 +4,15 @@ lauguage: minimal
 service:
   - docker
 
+env:
+  jobs:
+    - DISTRO_NAME=ubuntu DISTRO_VERSION=bionic TYPE=base
+    - DISTRO_NAME=ubuntu DISTRO_VERSION=bionic TYPE=docker
+    - DISTRO_NAME=centos DISTRO_VERSION=7 TYPE=base
+    - DISTRO_NAME=centos DISTRO_VERSION=7 TYPE=docker
+
+before_script:
+  - make prep-builder
+
 scripts:
-  - make all
+  - make build-image

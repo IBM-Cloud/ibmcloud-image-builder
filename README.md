@@ -36,7 +36,7 @@ git clone git@github.com:IBM-Cloud/ibmcloud-image-builder.git
 cd ibmcloud-image-builder
 docker pull syibm/ibmcloud-image-builder
 docker tag  syibm/ibmcloud-image-builder ibmcloud-image-builder
-make build-images
+make build-all
 ```
 
 
@@ -133,15 +133,15 @@ $ git clone git@github.com:IBM-Cloud/ibmcloud-image-builder.git
 $ cd ibmcloud-image-builder
 $ docker pull syibm/ibmcloud-image-builder
 $ docker tag  syibm/ibmcloud-image-builder ibmcloud-image-builder
-$ make build-images
+$ make build-all
 ```
 
-Or we can build the docker image(`make build`) locally as below:
+Or we can build the docker image(`make prep-builder`) locally as below:
 ```
 $ git clone git@github.com:IBM-Cloud/ibmcloud-image-builder.git
 $ cd ibmcloud-image-builder
-$ make build
-$ make build-images
+$ make prep-builder
+$ make build-all
 ```
 
 Note: If a new packer template needs to be created, then please repeat yourself.
