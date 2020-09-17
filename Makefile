@@ -7,9 +7,9 @@ REMOTE_BRANCH ?= main
 ## Options
 default: all
 
-all: prep-builder build-all cleanup
+all: pre-build build-all clean-all
 
-prep-builder:
+pre-build:
 	docker build . -f Dockerfile -t $(IMAGE_NAME):$(IMAGE_VERSION_LATEST)
 
 ubuntu-build:
