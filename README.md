@@ -136,11 +136,11 @@ $ docker tag  syibm/ibmcloud-image-builder ibmcloud-image-builder
 $ make build-all
 ```
 
-Or we can build the docker image(`make prep-builder`) locally as below:
+Or we can build the docker image(`make pre-build`) locally as below:
 ```
 $ git clone git@github.com:IBM-Cloud/ibmcloud-image-builder.git
 $ cd ibmcloud-image-builder
-$ make prep-builder
+$ make pre-build
 $ make build-all
 ```
 

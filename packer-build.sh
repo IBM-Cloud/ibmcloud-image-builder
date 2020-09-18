@@ -1,13 +1,16 @@
 #!/bin/bash
 set -ex
 
-# change directory
-cd $1
-
 # prepare to build
+IMAGE_DIR=$(echo "$1" | sed 's#packer/##g')
 DIR_TO_FILENAME=$(echo "$1" | sed 's#packer/##g' | tr '/' '-')
 NEW_IMAGE="output-qemu/ibmcloud-$DIR_TO_FILENAME-amd64-100G.qcow2"
 ENCRYPTED_IMAGE="output-qemu/ibmcloud-encrypted-$DIR_TO_FILENAME-amd64-100G.qcow2"
+
+# change directory
+mkdir -p img/$DIR_TO_FILENAME
+cp -r $1/* img/$DIR_TO_FILENAME
+cd img/$DIR_TO_FILENAME
 
 if [ -n "$2" ]; then
   SECRET="$2"
@@ -27,8 +30,6 @@ else
   export PACKER_PRIVATE_KEY=./ssh/id_rsa
 fi
 
-sudo rm -rf output-qemu
-
 # prepare public key image
 public_key=$(cat ${PACKER_PUBLIC_KEY})
 cat <<EOF > user-data
@@ -43,7 +44,7 @@ cloud-localds disk-ssh-pub.img user-data
 ansible-galaxy install geerlingguy.docker
 
 # build the images
-
+rm -rf output-qemu
 PACKER_LOG=0 packer build packer.json
 
 qemu-img resize output-qemu/packer.qcow2 100G
