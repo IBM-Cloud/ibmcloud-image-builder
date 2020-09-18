@@ -7,7 +7,7 @@ REMOTE_BRANCH ?= main
 ## Options
 default: all
 
-all: pre-build build-all clean-all
+all: pre-build build-all clean
 
 pre-build:
 	docker build . -f Dockerfile -t $(IMAGE_NAME):$(IMAGE_VERSION_LATEST)
@@ -17,11 +17,8 @@ ubuntu-build:
 
 build-all: ubuntu-bionic-base ubuntu-bionic-docker centos-7-base centos-7-docker
 
-clean-all:
-	$(MAKE) clean-image DISTRO_NAME=ubuntu DISTRO_VERSION=bionic TYPE=base
-	$(MAKE) clean-image DISTRO_NAME=ubuntu DISTRO_VERSION=bionic TYPE=docker
-	$(MAKE) clean-image DISTRO_NAME=centos DISTRO_VERSION=7 TYPE=docker
-	$(MAKE) clean-image DISTRO_NAME=centos DISTRO_VERSION=7 TYPE=base
+clean:
+	docker run --privileged --rm -v `pwd`:/ibmcloud-image-builder ${IMAGE_NAME}:${IMAGE_VERSION_LATEST} /bin/bash -c "./packer-delete.sh"
 
 ubuntu-bionic-base:
 	$(MAKE) build-image DISTRO_NAME=ubuntu DISTRO_VERSION=bionic TYPE=base
@@ -40,11 +37,5 @@ build-image:
 	$(if $(DISTRO_VERSION),,$(error DISTRO_VERSION is not set.[bionic (ubuntu), 7 (centos)]))
 	$(if $(TYPE),,$(error TYPE is not set. [base, docker]))
 	docker run --privileged --rm -v `pwd`:/ibmcloud-image-builder ${IMAGE_NAME}:${IMAGE_VERSION_LATEST} /bin/bash -c "./packer-build.sh packer/${DISTRO_NAME}/${DISTRO_VERSION}/${TYPE}"
-
-clean-image:
-	$(if $(DISTRO_NAME),,$(error DISTRO_NAME is not set. [ubuntu, centos]))
-	$(if $(DISTRO_VERSION),,$(error DISTRO_VERSION is not set.[bionic (ubuntu), 7 (centos)]))
-	$(if $(TYPE),,$(error TYPE is not set. [base, docker]))
-	docker run --privileged --rm -v `pwd`:/ibmcloud-image-builder ${IMAGE_NAME}:${IMAGE_VERSION_LATEST} /bin/bash -c "./packer-delete.sh packer/${DISTRO_NAME}/${DISTRO_VERSION}/${TYPE}"
 
 .PHONY: all
