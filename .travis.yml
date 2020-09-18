@@ -12,7 +12,7 @@ env:
     - DISTRO_NAME=centos DISTRO_VERSION=7 TYPE=docker
 
 before_script:
-  - make prep-builder
+  - make pre-build
 
 scripts:
   - make build-image
