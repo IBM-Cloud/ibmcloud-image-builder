@@ -206,8 +206,10 @@ $ tree -L 5
 
 
 # Acknowledgement
-Thanks to the colleagues and IBM for sponsoring this project.
+Thanks to the contributors, colleagues and IBM for sponsoring this project.
 
+* Nhat-Quang Dao
+* kalyani489
 * Albert Camacho
 * Chad Huesgen
 * Dan Wiggins
