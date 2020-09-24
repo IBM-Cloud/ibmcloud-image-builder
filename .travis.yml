@@ -8,6 +8,7 @@ env:
   jobs:
     - DISTRO_NAME=ubuntu DISTRO_VERSION=bionic TYPE=base
     - DISTRO_NAME=ubuntu DISTRO_VERSION=bionic TYPE=docker
+    - DISTRO_NAME=ubuntu DISTRO_VERSION=bionic TYPE=stress
     - DISTRO_NAME=centos DISTRO_VERSION=7 TYPE=base
     - DISTRO_NAME=centos DISTRO_VERSION=7 TYPE=docker
 
