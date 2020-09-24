@@ -15,7 +15,7 @@ pre-build:
 ubuntu-build:
 	docker build . -f Dockerfile.ubuntu -t $(IMAGE_NAME_UBUNTU):$(IMAGE_VERSION_LATEST)
 
-build-all: ubuntu-bionic-base ubuntu-bionic-docker centos-7-base centos-7-docker
+build-all: ubuntu-bionic-base ubuntu-bionic-docker ubuntu-bionic-stress centos-7-base centos-7-docker
 
 clean:
 	docker run --privileged --rm -v `pwd`:/ibmcloud-image-builder ${IMAGE_NAME}:${IMAGE_VERSION_LATEST} /bin/bash -c "./packer-delete.sh"
@@ -25,6 +25,9 @@ ubuntu-bionic-base:
 
 ubuntu-bionic-docker:
 	$(MAKE) build-image DISTRO_NAME=ubuntu DISTRO_VERSION=bionic TYPE=docker
+
+ubuntu-bionic-stress:
+	$(MAKE) build-image DISTRO_NAME=ubuntu DISTRO_VERSION=bionic TYPE=stress
 
 centos-7-base:
 	$(MAKE) build-image DISTRO_NAME=centos DISTRO_VERSION=7 TYPE=base
