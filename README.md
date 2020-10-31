@@ -8,7 +8,9 @@ https://hub.docker.com/r/syibm/ibmcloud-image-builder-ubuntu
 
 # Try it out
 
-This project is set up to run on Mac or Linux.
+This project is set up to run on Linux only at this moment.
+
+There is a way to build images on macOS, but the user needs to install lots of tools instead of using Docker provided by this repo... that's not very convenient. The details can be found in [ISSUE-77](https://github.com/IBM-Cloud/ibmcloud-image-builder/issues/77).
 
 ## Dependencies
 
@@ -17,15 +19,6 @@ Before you can build a custom image you must install the following dependencies:
 * [Docker](https://www.docker.com/products/docker-desktop)
 * make
 
-### Installing make on macOS
-
-To install the `make` command on macOS,	you need to install the Xcode command line tools by executing the following command in your terminal:
-
-```
-xcode-select --install
-```
-
-When the dialog pops up click on the *Install* button.
 
 ## Building your first custom image
 
