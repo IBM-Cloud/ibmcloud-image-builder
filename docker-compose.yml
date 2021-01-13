@@ -5,7 +5,7 @@
 #     source cloud.env
 # Run:
 #   docker-compose run ibmcloud-image-builder
-version: '3.3'
+version: "3.3"
 services:
   ibmcloud-image-builder:
     privileged: true
@@ -15,8 +15,8 @@ services:
     volumes:
       # For future ssh use in development
       - ~/.ssh:/home/ubuntu/.ssh:ro
-      - ~/test/github/ibmcloud-image-builder/:/ibmcloud-image-builder
-      - ~/test/genctl/system-tf-base/:/system-tf-base
+      - /voljenkins/test/github/ibmcloud-image-builder/:/ibmcloud-image-builder
+      - /voljenkins/test/genctl/system-tf-base/:/system-tf-base
     environment:
       IBMCLOUD_API_KEY: "$IBMCLOUD_API_KEY"
       IBMCLOUD_API_ENDPOINT: $IBMCLOUD_API_ENDPOINT
