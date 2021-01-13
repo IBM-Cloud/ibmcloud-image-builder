@@ -1,13 +1,26 @@
 ---
-  - name: play Hello World
-    hosts: default
-    become: true
+- name: play Hello World
+  hosts: default
+  become: true
 
-    tasks:
-      - name: task Hello World
-        shell:
-          'echo "Hello World!\n$(lsb_release -a)"'
-        register:
-          hello_world
+  tasks:
+    - name: task Hello World
+      shell: 'echo "Hello World!\n$(lsb_release -a)"'
+      register: hello_world
 
-      - debug: msg="{{ hello_world.stdout }}"
+    - debug: msg="{{ hello_world.stdout }}"
+
+- name: apt remove and purge unattended-upgrades
+  hosts: default
+  become: true
+
+  tasks:
+    - name: apt remove unattended-upgrades
+      apt:
+        name: unattended-upgrades
+        state: absent
+
+    - name: apt purge unattended-upgrades
+      apt:
+        name: unattended-upgrades
+        purge: yes
