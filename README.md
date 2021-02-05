@@ -201,6 +201,7 @@ $ tree -L 5
 # Acknowledgement
 Thanks to the contributors, colleagues and IBM for sponsoring this project.
 
+* Jinesh Paul
 * Nhat-Quang Dao
 * kalyani489
 * Albert Camacho
