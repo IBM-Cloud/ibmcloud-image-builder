@@ -57,7 +57,7 @@ ENV LC_ALL "C.UTF-8"
 ENV LANG "en_US.UTF-8"
 
 
-    # golang 1.13
+# golang 1.13
 RUN set -ex && \
     cd ${HOME} && \
     wget https://dl.google.com/go/go1.13.9.linux-amd64.tar.gz && \
@@ -77,7 +77,7 @@ RUN set -ex && \
     echo 'export PATH=$HOME/.tfenv/bin:$PATH' >> ~/.bashrc
 ENV PATH=${HOME}/.tfenv/bin:$GOROOT/bin:${HOME}/go/bin:$PATH
 
-    # terraform
+# terraform
 RUN set -ex && \
     cd ${HOME} && \
     tfenv install 0.12.29 && \
@@ -107,8 +107,8 @@ RUN set -ex && \
     rm vault_1.4.2_linux_amd64.zip && \
     sudo mv vault /usr/local/bin
 
-    # ibmcloud cli client
-    # ibmcloud cli client installs docker
+# ibmcloud cli client
+# ibmcloud cli client installs docker
 RUN set -ex && \
     cd ${HOME} && \
     sudo curl -sL https://ibm.biz/idt-installer | bash && \
@@ -132,14 +132,15 @@ RUN set -ex && \
     curl -L https://raw.githubusercontent.com/yyuu/pyenv-installer/master/bin/pyenv-installer | bash && \
     pyenv install 3.6.9 && \
     pyenv global 3.6.9 && \
+    pip install --upgrade pip && \
     pip install -r ${HOME}/requirements.txt && \
     rm ${HOME}/requirements.txt && \
     sudo mkdir -p /integration-testing
-    # python 3.6.9
-    # install python 3.6.9 set 3.6.9 as global
-    # if you want to try python 3.7.5 or higher, then
-    #   run the docker container
-    #   $ pyenv install 3.7.5
-    #   $ pyenv global 3.7.5
+# python 3.6.9
+# install python 3.6.9 set 3.6.9 as global
+# if you want to try python 3.7.5 or higher, then
+#   run the docker container
+#   $ pyenv install 3.7.5
+#   $ pyenv global 3.7.5
 
 WORKDIR ${WDIR}
