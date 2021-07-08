@@ -6,7 +6,7 @@ verify_ssl = true
 [dev-packages]
 
 [packages]
-ansible = "==2.10.0"
+ansible = "==2.10.7"
 ansible-lint = "==4.2.0"
 appdirs = "==1.4.4"
 arrow = "==0.15.6"
