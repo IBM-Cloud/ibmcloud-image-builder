@@ -1,7 +1,7 @@
 # ibmcloud-image-builder
 
 # Update on 02/13/2022:
-**This repo is outdated, and I'm going to deprecate this repo over time, since I'm planning a new one. I'll announce the new one sooner or later.**
+**This repo is outdated, and I'm going to deprecate this repo over time since I'm planning a new one. I'll announce the new one sooner or later.**
 
 ![Docker](https://github.com/IBM-Cloud/ibmcloud-image-builder/workflows/Docker/badge.svg) [![Build Status](https://travis-ci.org/IBM-Cloud/ibmcloud-image-builder.svg?branch=master)](https://travis-ci.org/IBM-Cloud/ibmcloud-image-builder)
 
