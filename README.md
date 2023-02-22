@@ -1,13 +1,15 @@
 # ibmcloud-image-builder
 
+# Update on 02/22/2023:
+new repos with the latest packer hcl templates:
+* ubuntu : https://github.com/ibm-xaas/ubuntu-to-qcow2
+* fedora : https://github.com/ibm-xaas/fedora-to-qcow2
+* redhat : https://github.com/ibm-xaas/rhel-to-qcow2
+
 # Update on 02/13/2022:
 **This repo is outdated, and I have no plan to update this repo, but I'll announce the new one sooner or later. I'm going to deprecate/archive this repo very soon since I'm planning a new one. **
 
 ![Docker](https://github.com/IBM-Cloud/ibmcloud-image-builder/workflows/Docker/badge.svg) [![Build Status](https://travis-ci.org/IBM-Cloud/ibmcloud-image-builder.svg?branch=master)](https://travis-ci.org/IBM-Cloud/ibmcloud-image-builder)
-
-https://hub.docker.com/r/syibm/ibmcloud-image-builder
-
-https://hub.docker.com/r/syibm/ibmcloud-image-builder-ubuntu
 
 # Try it out
 
